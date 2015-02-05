@@ -1,0 +1,15 @@
+* -Ofun
+* forgiveness > permission
+* url?
+* turning everyone into committers
+
+* journal on use.perl.org
+
+* Haskell
+* lambdacamels
+
+* test-driven development
+
+* evalbot, svnbot
+
+* Moose
