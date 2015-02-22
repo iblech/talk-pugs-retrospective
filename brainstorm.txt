@@ -13,3 +13,23 @@
 * evalbot, svnbot
 
 * Moose
+
+
+Pugs, eine experimentelle Perl-6-Plattform: eine Retrospektive
+
+"Hi. Today I have started working on specifying and implementing
+Featherweight Perl 6 (FP6), a side-effect-free subset of Perl 6."
+Mit diesen Worten stellte Audrey Tang im Februar 2005 das
+Pugs-Projekt vor. Anfangs als Implementierung einer kleinen Teilmenge
+von Perl 6 in Haskell gedacht, entwickelte sich das Projekt
+innerhalb kürzester Zeit zu einem vollwertigen Compiler und
+Interpreter für Perl 6 und zog eine große und vielfältige
+Entwicklergemeinde an.
+
+Der Vortrag wird einen subjektiven Abriss über die Geschichte von
+Pugs geben. Besonderes Augenmerk wird auf der Art und Weise liegen,
+wie Audrey Tang mit ihrer schier unglaublichen Energie das Projekt
+leitete, und was die Philosophie "-Ofun" der Entwicklerinnen und
+Entwickler bedeutete. Wir werden auch diskutieren, welche Teile von
+Pugs in andere Perl-6-Implementierungen aufgegangen sind und welchen
+weiteren Einfluss Pugs auf die Perl- und Haskell-Gemeinden hatte.
