@@ -1,3 +1,10 @@
+Four parts:
+0. overview and context of the time
+1. timeline (with blog excerpts and code examples)
+2. culture
+3. parts of Pugs living on in new Perl 6 implementations
+
+
 * -Ofun
 * forgiveness > permission
 * url?
