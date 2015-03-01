@@ -22,6 +22,8 @@ Four parts:
 * Moose
 
 
+* Heute Test hinzugefügt, über Nacht implementiert
+
 Pugs, eine experimentelle Perl-6-Plattform: eine Retrospektive
 
 "Hi. Today I have started working on specifying and implementing
