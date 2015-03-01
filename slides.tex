@@ -1,3 +1,4 @@
+% Compile using: TEXINPUTS=minted/source: xelatex -shell-escape slides.tex
 \documentclass[12pt,compress,english,utf8,t]{beamer}
 
 \usepackage{etex}
@@ -8,14 +9,17 @@
 \usepackage{booktabs}
 \usepackage{ragged2e}
 
+\usepackage{minted}
+\setminted{linenos}
+
 \usepackage[protrusion=true,expansion=false]{microtype}
 
-\title{Pugs, an experimental Perl 6 platform: a retrospective}
+\title[Pugs, an experimental Perl 6 platform: a retrospective]{A retrospective on Pugs}
 \author[Augsburg.pm]{
-  \vspace{-1em} \\
-  \includegraphics[scale=0.32]{images/timeline} \\[0.5em]
+  \vspace{-0.5em} \\
+  \includegraphics[scale=0.35]{images/timeline} \\[0.8em]
   Ingo Blechschmidt \\
-  \texttt{<iblech@web.de>} \\
+  \small \texttt{<iblech@web.de>} \\
   {\scriptsize March ??th, 2015}
 }
 \date{March ??th, 2015}
@@ -90,26 +94,29 @@
 
 \frame{\titlepage}
 
-\frame[plain]{\justifying
-  \textbf{Abstract.}
-  ``Hi. Today I have started working on specifying and implementing
-  Featherweight Perl 6 (FP6), a side-effect-free subset of Perl~6.''
-  Audrey Tang used these words to unveil the Pugs project in February of 2005.
-  Initially conceived as an implementation of a small subset of Perl~6 in
-  Haskell, the project quickly grew to contain a full-fledged compiler and
-  interpreter for Perl~6 and drew a large and diverse community.
+\frame[plain]{
+  \centeredpar{
+    \justifying\scriptsize
+    \textbf{Abstract.}
+    ``Hi. Today I have started working on specifying and implementing
+    Featherweight Perl 6 (FP6), a side-effect-free subset of Perl~6.''
+    Audrey Tang used these words to unveil the Pugs project in February of 2005.
+    Initially conceived as an implementation of a small subset of Perl~6 in
+    Haskell, the project quickly grew to contain a full-fledged compiler and
+    interpreter for Perl~6 and drew a large and diverse community.
 
-  \medskip
-  The talk will give a subjective survey of the history of Pugs. We will pay
-  particular attention to the special manner with which Audrey Tang led the project and
-  what the philosophy ``-Ofun'' meant to the developers. We'll also discuss
-  which parts of Pugs were absorbed into other implementations of Perl~6 and
-  which influence Pugs had on the Perl and Haskell communities.
-  \medskip
+    \medskip
+    The talk will give a subjective survey of the history of Pugs. We will pay
+    particular attention to the special manner with which Audrey Tang led the project and
+    what the philosophy ``-Ofun'' meant to the developers. We'll also discuss
+    which parts of Pugs were absorbed into other implementations of Perl~6 and
+    which influence Pugs had on the Perl and Haskell communities.
+    \medskip
 
-  \textbf{Warning.} The account is mostly from memory and not properly
-  researched. Do not trust it!
-  \par
+    \textbf{Warning.} The account is mostly from memory and not properly
+    researched. Try not to trust it! The code excerpts are edited for legibility.
+    \par
+  }
 }
 
 \frame{\tableofcontents}
@@ -117,7 +124,7 @@
 \section{Timeline of Pugs development}
 
 \subsection{The beginning}
-\logo{\includegraphics[scale=0.15]{images/audreyt}}
+\logo{\includegraphics[scale=0.15]{images/audreyt.jpeg}}
 \begin{frame}\frametitle{The beginning}
   \centeredpar{
     \hil{``Hi. Today I have started working on specifying and implementing
@@ -126,29 +133,48 @@
     \raggedleft -- Audrey Tang, February 2nd, 2005
   }
 
-  \only<1>{
-    \begin{Mdescription}{2001}
-      \item[2001] Apocalypse 1
-      \item[2004] Many Apocalypse and Synopse documents
-      \item[2005] Active discussion on perl6-language@perl.org
-      \item[2005] Pugs, providing the first implementation
-      \item[]
-      \item[2005] Facebook
-      \item[2005] YouTube
-      \item[2008] GitHub
-    \end{Mdescription}
-  }
-
-  \only<2->{
-    \begin{itemize}
-      \item Audrey's first post contained a language semantics question.
-      \item Important insight: Specification and implementation have to be
-      developed hand in hand.
-    \end{itemize}
-  }
+  \begin{Mdescription}{2001}
+    \item[2001] Apocalypse 1
+    \item[2004] Many Apocalypse and Synopse documents
+    \item[2005] Active discussion on perl6-language@perl.org
+    \item[2005] Pugs, providing the first implementation
+    \item[]
+    \item[2005] Facebook
+    \item[2005] YouTube
+    \item[2008] GitHub
+  \end{Mdescription}
 \end{frame}
+\logo{}
 
-% Show first screenshot of Pugs
+% http://wayback.archive.org/web/20050209100505/http://haskell.org/hawiki/Perl6UsersGolfingSystem
+\begin{frame}[fragile]\frametitle{Screenshot}\scriptsize
+  \vspace{-2.0em}
+  \begin{verbatim}.=====. __  __  ____   ___    _________________________________________
+||   || ||  || ||  || ||__'   Pugs 6: Based on the Perl 6 Synopses
+||====' ||__|| ||__||  __||   Copyright (c) 2005 Autrijus Tang
+||      `===='  ___|| `==='   World Wide Web: http://autrijus.org/pugs
+||             `===='         Report bugs to: autrijus@autrijus.org
+==           Version: 6.0.0   =========================================
+
+Welcome to Pugs -- Perl6 User's Golfing System
+Type :h for help
+
+pugs> :h
+Commands available from the prompt:
+:h              = show this help message
+:q              = quit
+. <exp>         = show the syntax tree of an expression
+? <exp>         = evaluate an expression
+
+pugs> . ('1' & "2") * ( 3.0 | "4abcd" )
+Op2 "*" (Op2 "|" (Val (VStr "1")) (Val (VStr "2"))) (Op2 "&" (Val (VNum 3.0)) (Val (VStr "4abcd")))
+
+pugs> ('1' & "2") * ( 3.0 | "4abcd" )
+((3.0 | 4.0) & (6.0 | 8.0))
+
+pugs> :q
+Leaving pugs.\end{verbatim}
+\end{frame}
 
 \note{
   \begin{itemize}
@@ -164,8 +190,57 @@
   \end{itemize}
 }
 
-% Day 14: Testing framework
-% Day 23: Test.pm flies
+\subsection{The early days}
+\begin{frame}[fragile]\frametitle{The early days}
+  \begin{Mdescription}{Day 00}
+    \item<1-2|only@1-2>[Day 4] ``Parsec; 90\,\% of operators implemented!''
+
+    % https://github.com/audreyt/pugs/blob/e760c8600350603c10c825caf17ca5ce1e2846ae/src/Parser.hs
+    % https://github.com/audreyt/pugs/blob/e760c8600350603c10c825caf17ca5ce1e2846ae/src/Prim.hs
+    \only<1>{
+      \inputminted{haskell}{code-snippets/day4-ast.hs}
+    }
+
+    \only<2>{
+      \inputminted{haskell}{code-snippets/day4-parser.hs}
+      \bigskip
+      \inputminted{haskell}{code-snippets/day4-prim.hs}
+    }
+
+    \item<3|only@3>[Day 8] ``Pugs 6.0.2; Turing Completeness''
+
+    % https://github.com/audreyt/pugs/blob/e760c8600350603c10c825caf17ca5ce1e2846ae/src/Eval.hs
+    User-defined subroutines, variable binding, \ldots\par
+    \inputminted{haskell}{code-snippets/day8-eval.hs}
+
+    \item<4|only@4>[Day 12] ``Refactoring''
+
+    User-defined infix/unary operators, rand(), \ldots\par
+    \inputminted{haskell}{code-snippets/day12-prim.hs}
+
+    \item<5|only@5>[Day 12] ``Continuations''
+
+    \inputminted{haskell}{code-snippets/day13-monads.hs}
+    \bigskip
+    \inputminted{haskell}{code-snippets/day13-ast.hs}
+
+    \item<6|only@6>[Day 14] ``All tests successful''
+
+    \inputminted{perl}{code-snippets/day14-basic.pl}
+
+    \item<7|only@7>[Day 20] ``6.0.8''
+
+    Hashes, Pairs, many IO primitivs, \ldots\par
+    \inputminted{perl}{code-snippets/day20-ycombinator.pl}
+
+    \item<8|only@8>[Day 23] ``Test.pm flies!''
+
+    First Perl 6 module, more than 400 unit tests, \ldots\par
+    \inputminted{perl}{code-snippets/day23-test.pm}
+  \end{Mdescription}
+\end{frame}
+
+% Finished http://pugs.blogs.com/pugs/2005/03/page/2/.
 
 \appendix
 
@@ -189,8 +264,8 @@
 
     \item \sourcedquote{In other news, Pugs was mentioned on The Haskell
     Sequence today. Indeed, I have noted that a significant part of questions
-    asked in #haskell are from camelfolks. Conversely, we saw a large influx
-    from lambdafolks to #perl6 as well. Lots of knowledge transfer is
+    asked in \#haskell are from camelfolks. Conversely, we saw a large influx
+    from lambdafolks to \#perl6 as well. Lots of knowledge transfer is
     happening, which makes me really happy.}{Audrey Tang}{February 24th,
     2005}{http://pugs.blogs.com/pugs/2005/02/day_24_an_amazi.html}
   \end{itemize}
@@ -198,5 +273,15 @@
 
 \end{document}
 
+\begin{itemize}
+  \item Audrey's first post contained a language semantics question.
+  \item Important insight: Specification and implementation have to be
+  developed hand in hand.
+\end{itemize}
+
 http://www.slideshare.net/autang/pugs-a-perl-6-implementation
 http://www.slideshare.net/autang/ofun-optimizing-for-fun
+
+Porting modules
+Testing stuff
+Some builtins
