@@ -26,7 +26,7 @@
 
 \usetheme{Warsaw}
 \usecolortheme{seahorse}
-\definecolor{mypurple}{RGB}{134,0,174}  % Audrey's personal blog color, with full saturation
+\definecolor{mypurple}{RGB}{60,0,255}  % Audrey's personal blog color, with full saturation
 \setbeamercolor{structure}{fg=mypurple}
 \usefonttheme{serif}
 \usepackage{mathpazo}
@@ -121,9 +121,11 @@
 
 \frame{\tableofcontents}
 
+
 \section{Timeline of Pugs development}
 
 \subsection{The beginning}
+
 \logo{\includegraphics[scale=0.15]{images/audreyt.jpeg}}
 \begin{frame}\frametitle{The beginning}
   \centeredpar{
@@ -190,7 +192,9 @@ Leaving pugs.\end{verbatim}
   \end{itemize}
 }
 
+
 \subsection{The early days}
+
 \begin{frame}[fragile]\frametitle{The early days}
   \begin{Mdescription}{Day 00}
     \item<1-2|only@1-2>[Day 4] ``Parsec; 90\,\% of operators implemented!''
@@ -215,10 +219,10 @@ Leaving pugs.\end{verbatim}
 
     \item<4|only@4>[Day 12] ``Refactoring''
 
-    User-defined infix/unary operators, rand(), \ldots\par
+    eval(), rand(), \ldots\par
     \inputminted{haskell}{code-snippets/day12-prim.hs}
 
-    \item<5|only@5>[Day 12] ``Continuations''
+    \item<5|only@5>[Day 13] ``Continuations''
 
     \inputminted{haskell}{code-snippets/day13-monads.hs}
     \bigskip
@@ -230,7 +234,7 @@ Leaving pugs.\end{verbatim}
 
     \item<7|only@7>[Day 20] ``6.0.8''
 
-    Hashes, Pairs, many IO primitivs, \ldots\par
+    Hashes, pairs, many IO primitives, \ldots\par
     \inputminted{perl}{code-snippets/day20-ycombinator.pl}
 
     \item<8|only@8>[Day 23] ``Test.pm flies!''
@@ -240,7 +244,20 @@ Leaving pugs.\end{verbatim}
   \end{Mdescription}
 \end{frame}
 
-% Finished http://pugs.blogs.com/pugs/2005/03/page/2/.
+
+\subsection{Further highlights}
+
+\begin{frame}\frametitle{Further highlights}
+  \begin{Mdescription}{Tag 00}
+    \item[Day 47] ``Perl 5 regular expressions landed.''
+
+    \inputminted{perl}{code-snippets/day47-regex.pl}
+
+    \item[Day 50] Compiling to Parrot
+  \end{Mdescription}
+\end{frame}
+
+% Finished http://pugs.blogs.com/pugs/2005/04/page/2/.
 
 \appendix
 
@@ -284,6 +301,7 @@ http://www.slideshare.net/autang/ofun-optimizing-for-fun
 
 porting modules
 testing stuff
+force_todo
 some builtins
 IRC library and bots
 hyper operators
