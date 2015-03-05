@@ -114,7 +114,8 @@
     \medskip
 
     \textbf{Warning.} The account is mostly from memory and not properly
-    researched. Try not to trust it! The code excerpts are edited for legibility.
+    researched. Try not to trust it! Also note that \emph{the code excerpts are
+    edited for legibility}, i.\,e.\@ shortened at a few places.
     \par
   }
 }
@@ -126,7 +127,7 @@
 
 \subsection{The beginning}
 
-\logo{\includegraphics[scale=0.15]{images/audreyt.jpeg}}
+\logo{\includegraphics[scale=0.13]{images/audreyt2.jpeg}}
 \begin{frame}\frametitle{The beginning}
   \centeredpar{
     \hil{``Hi. Today I have started working on specifying and implementing
@@ -136,7 +137,7 @@
   }
 
   \begin{Mdescription}{2001}
-    \item[2001] Apocalypse 1
+    \item[2001] Apocalypse 1, first Perl 6 design document
     \item[2004] Many Apocalypse and Synopse documents
     \item[2005] Active discussion on perl6-language@perl.org
     \item[2005] Pugs, providing the first implementation
@@ -247,19 +248,48 @@ Leaving pugs.\end{verbatim}
 
 \subsection{Further highlights}
 
-\begin{frame}\frametitle{Further highlights}
+\begin{frame}[label=further-highlights]\frametitle{Further highlights}
   \begin{Mdescription}{Tag 00}
     \item[Day 47] ``Perl 5 regular expressions landed.''
-
-    \inputminted{perl}{code-snippets/day47-regex.pl}
+    \hyperlink{perl5re}{\beamerbutton{see code}}
 
     \item[Day 50] Compiling to Parrot
+
+    \item[Day 85] BEGIN blocks
+    \hyperlink{begin-blocks}{\beamerbutton{see code}}
+
+    \item[Day 87] ``STM: Atomic power!''
+    \hyperlink{stm}{\beamerbutton{see code}}
   \end{Mdescription}
 \end{frame}
 
 % Finished http://pugs.blogs.com/pugs/2005/04/page/2/.
 
 \appendix
+
+\section{Day 47: ``Perl 5 regular expressions landed.''}
+
+\begin{frame}[label=perl5re]\frametitle{Day 47: ``Perl 5 regular expressions landed.''}
+  \inputminted{text}{code-snippets/day47-regex.pl}
+
+  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
+\end{frame}
+
+\section{Day 85: BEGIN blocks}
+
+\begin{frame}[label=begin-blocks]\frametitle{Day 85: BEGIN blocks}
+  \inputminted{haskell}{code-snippets/day85-parser.hs}
+
+  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
+\end{frame}
+
+\section{Day 87: ``STM: Atomic power!''}
+
+\begin{frame}[label=stm]\frametitle{Day 87: ``STM: Atomic power!''}
+  \inputminted{perl}{code-snippets/day87-atomic.pl}
+
+  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
+\end{frame}
 
 \note{
   \begin{itemize}
@@ -298,6 +328,13 @@ Leaving pugs.\end{verbatim}
 
 http://www.slideshare.net/autang/pugs-a-perl-6-implementation
 http://www.slideshare.net/autang/ofun-optimizing-for-fun
+http://perlmonks.org/?node_id=835731
+
+pioneering techniques:
+GADTs
+
+fun:
+slides "Perl 6, genau jetzt!"
 
 porting modules
 testing stuff
