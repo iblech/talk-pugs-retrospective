@@ -255,15 +255,21 @@ Leaving pugs.\end{verbatim}
 
     \item[Day 50] Compiling to Parrot
 
+    \item[Day 69] Autovivification, tied magic, slice
+    assignment, \ldots{} \hyperlink{tied-env}{\beamerbutton{see code}}
+
     \item[Day 85] BEGIN blocks
     \hyperlink{begin-blocks}{\beamerbutton{see code}}
 
     \item[Day 87] ``STM: Atomic power!''
     \hyperlink{stm}{\beamerbutton{see code}}
+
+    \item[Day 88] ``A shiny new monad.''
+    \hyperlink{shiny-monad}{\beamerbutton{see code}}
   \end{Mdescription}
 \end{frame}
 
-% Finished http://pugs.blogs.com/pugs/2005/04/page/2/.
+% Continue here: http://pugs.blogs.com/pugs/2005/05/page/2/.
 
 \appendix
 
@@ -271,6 +277,14 @@ Leaving pugs.\end{verbatim}
 
 \begin{frame}[label=perl5re]\frametitle{Day 47: ``Perl 5 regular expressions landed.''}
   \inputminted{text}{code-snippets/day47-regex.pl}
+
+  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
+\end{frame}
+
+\section{Day 69: Tied \texttt{\%*ENV}}
+
+\begin{frame}[label=tied-env]\frametitle{Day 69: Tied \texttt{\%*ENV}}
+  \inputminted{haskell}{code-snippets/day69-ast.hs}
 
   \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
 \end{frame}
@@ -287,6 +301,21 @@ Leaving pugs.\end{verbatim}
 
 \begin{frame}[label=stm]\frametitle{Day 87: ``STM: Atomic power!''}
   \inputminted{perl}{code-snippets/day87-atomic.pl}
+
+  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
+\end{frame}
+
+\section{Day 88: ``A shiny new monad.''}
+
+\begin{frame}[label=shiny-monad]\frametitle{Day 88: ``A shiny new monad.''}
+  % http://pugs.blogs.com/pugs/2005/04/day_88_a_shiny_.html
+
+  \begin{tabbing}
+    \hil{$\langle$audreyt$\rangle$} \= \kill
+    \hil{$\langle$obra$\rangle$} \> What the hell changed in the last 12 hours with pugs? \\[0.3em]
+    \hil{$\langle$obra$\rangle$} \> I mean it smoked 30\,\% faster. \\[0.3em]
+    \hil{$\langle$audreyt$\rangle$} \> oh. yeah. I rewrote the monad
+  \end{tabbing}
 
   \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
 \end{frame}
