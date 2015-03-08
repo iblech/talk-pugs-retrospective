@@ -139,6 +139,7 @@
   }
 }
 
+\setcounter{tocdepth}{2}
 \frame{\tableofcontents}
 
 
@@ -289,21 +290,90 @@ Leaving pugs.\end{verbatim}
     \item[Day 99] ``Full named rules!''
     \hyperlink{rules}{\beamerbutton{see code}}
   \end{Mdescription}
+
+  \hyperlink{the-end}{\beamerbutton{skip details}}
 \end{frame}
 
 % Continue here: http://pugs.blogs.com/pugs/2005/05/page/2/.
 
 
+\subsubsection{Day 47: ``Perl 5 regular expressions landed.''}
+
+\begin{frame}[label=perl5re]\frametitle{Day 47: ``Perl 5 regular expressions landed.''}
+  \inputminted{text}{code-snippets/day47-regex.pl}
+
+  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
+\end{frame}
+
+
+\subsubsection{Day 69: Tied \texttt{\%*ENV}}
+
+\begin{frame}[label=tied-env]\frametitle{Day 69: Tied \texttt{\%*ENV}}
+  \inputminted{haskell}{code-snippets/day69-ast.hs}
+
+  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
+\end{frame}
+
+
+\subsubsection{Day 85: BEGIN blocks}
+
+\begin{frame}[label=begin-blocks]\frametitle{Day 85: BEGIN blocks}
+  \inputminted{haskell}{code-snippets/day85-parser.hs}
+
+  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
+\end{frame}
+
+
+\subsubsection{Day 87: ``STM: Atomic power!''}
+
+\begin{frame}[label=stm]\frametitle{Day 87: ``STM: Atomic power!''}
+  \inputminted{perl}{code-snippets/day87-atomic.pl}
+
+  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
+\end{frame}
+
+
+\subsubsection{Day 88: ``A shiny new monad.''}
+
+\begin{frame}[label=shiny-monad]\frametitle{Day 88: ``A shiny new monad.''}
+  % http://pugs.blogs.com/pugs/2005/04/day_88_a_shiny_.html
+
+  \begin{tabbing}
+    \hil{$\langle$audreyt$\rangle$} \= \kill
+    \hil{$\langle$obra$\rangle$} \> What the hell changed in the last 12 hours with pugs? \\[0.3em]
+    \hil{$\langle$obra$\rangle$} \> I mean it smoked 30\,\% faster. \\[0.3em]
+    \hil{$\langle$audreyt$\rangle$} \> oh. yeah. I rewrote the monad
+  \end{tabbing}
+
+  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
+\end{frame}
+
+
+\subsubsection{Day 99: ``Full named rules!''}
+
+\begin{frame}[label=rules]\frametitle{Day 99: ``Full named rules!''}
+  % http://pugs.blogs.com/pugs/2005/05/day_99_full_nam.html
+
+  Perl 6 rules: Named regexes that form a formal grammar. Capture objects can
+  be full-fledged abstract syntax trees.
+
+  % http://perlgeek.de/en/article/mutable-grammar-for-perl-6 (2008)
+  \inputminted{perl}{code-snippets/day99-rules.pl}
+
+  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
+\end{frame}
+
+
 \subsection{The end}
 
-\begin{frame}\frametitle{The end}
+\begin{frame}[label=the-end]\frametitle{The end}
   \begin{Mdescription}{Beginning of 2007}
     \item[Beginning of 2007]
       Active development of Pugs stalls.
   \end{Mdescription}
 
   \begin{center}
-    (discussion only verbally)
+    \emph{-- discussion only verbally --}
   \end{center}
 \end{frame}
 
@@ -435,9 +505,9 @@ Leaving pugs.\end{verbatim}
 }
 
 
-\section{Long-term contributions of Pugs}
+\section{Lasting contributions of Pugs}
 
-\begin{frame}\frametitle{Long-term contributions of Pugs}
+\begin{frame}\frametitle{Lasting contributions of Pugs}
   \begin{itemize}
     \item Renewed interest in Perl 6.
     \item Major refinements of the specification.
@@ -468,67 +538,6 @@ Leaving pugs.\end{verbatim}
 }
 
 \appendix
-
-\section{Day 47: ``Perl 5 regular expressions landed.''}
-
-\begin{frame}[label=perl5re]\frametitle{Day 47: ``Perl 5 regular expressions landed.''}
-  \inputminted{text}{code-snippets/day47-regex.pl}
-
-  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
-\end{frame}
-
-\section{Day 69: Tied \texttt{\%*ENV}}
-
-\begin{frame}[label=tied-env]\frametitle{Day 69: Tied \texttt{\%*ENV}}
-  \inputminted{haskell}{code-snippets/day69-ast.hs}
-
-  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
-\end{frame}
-
-\section{Day 85: BEGIN blocks}
-
-\begin{frame}[label=begin-blocks]\frametitle{Day 85: BEGIN blocks}
-  \inputminted{haskell}{code-snippets/day85-parser.hs}
-
-  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
-\end{frame}
-
-\section{Day 87: ``STM: Atomic power!''}
-
-\begin{frame}[label=stm]\frametitle{Day 87: ``STM: Atomic power!''}
-  \inputminted{perl}{code-snippets/day87-atomic.pl}
-
-  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
-\end{frame}
-
-\section{Day 88: ``A shiny new monad.''}
-
-\begin{frame}[label=shiny-monad]\frametitle{Day 88: ``A shiny new monad.''}
-  % http://pugs.blogs.com/pugs/2005/04/day_88_a_shiny_.html
-
-  \begin{tabbing}
-    \hil{$\langle$audreyt$\rangle$} \= \kill
-    \hil{$\langle$obra$\rangle$} \> What the hell changed in the last 12 hours with pugs? \\[0.3em]
-    \hil{$\langle$obra$\rangle$} \> I mean it smoked 30\,\% faster. \\[0.3em]
-    \hil{$\langle$audreyt$\rangle$} \> oh. yeah. I rewrote the monad
-  \end{tabbing}
-
-  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
-\end{frame}
-
-\section{Day 99: ``Full named rules!''}
-
-\begin{frame}[label=rules]\frametitle{Day 99: ``Full named rules!''}
-  % http://pugs.blogs.com/pugs/2005/05/day_99_full_nam.html
-
-  Perl 6 rules: Named regexes that form a formal grammar. Capture objects can
-  be full-fledged abstract syntax trees.
-
-  % http://perlgeek.de/en/article/mutable-grammar-for-perl-6 (2008)
-  \inputminted{perl}{code-snippets/day99-rules.pl}
-
-  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
-\end{frame}
 
 
 \note{
