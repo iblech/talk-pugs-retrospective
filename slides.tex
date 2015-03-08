@@ -9,19 +9,35 @@
 \usepackage{booktabs}
 \usepackage{ragged2e}
 
+\makeatletter
+\ifbeamer@draftmode
+\usepackage{verbatim}
+\newcommand{\inputminted}[2]{\verbatiminput{#2}}
+\else
 \usepackage{minted}
 \setminted{linenos}
+\fi
+\makeatother
+
+\usetikzlibrary{calc,shapes.callouts,shapes.arrows}
+\definecolor{darkred}{RGB}{220,0,0}
+\newcommand{\hcancel}[5]{%
+    \tikz[baseline=(tocancel.base)]{
+        \node[inner sep=0pt,outer sep=0pt] (tocancel) {#1};
+        \draw[darkred, line width=1mm] ($(tocancel.south west)+(#2,#3)$) -- ($(tocancel.north east)+(#4,#5)$);
+    }%
+}%
 
 \usepackage[protrusion=true,expansion=false]{microtype}
 
 \title[Pugs, an experimental Perl 6 platform: a retrospective]{A retrospective on Pugs}
-\author[Augsburg.pm]{
+\author[Augsburg.pm]{\texorpdfstring{
   \vspace{-0.5em} \\
   \includegraphics[scale=0.35]{images/timeline} \\[0.8em]
   Ingo Blechschmidt \\
   \small \texttt{<iblech@web.de>} \\
   {\scriptsize March ??th, 2015}
-}
+}{Ingo Blechschmidt}}
 \date{March ??th, 2015}
 
 \usetheme{Warsaw}
@@ -54,11 +70,11 @@
   \end{tikzpicture}%
 }
 
-\newcommand{\centeredpar}[1]{%
+\newcommand{\centeredpar}[2]{%
   \begin{center}
-    \parbox{0.9\textwidth}{%
-      #1%
-    }%
+    \colorbox{white}{\parbox{#1\textwidth}{%
+      #2%
+    }}%
   \end{center}%
 }
 
@@ -91,13 +107,14 @@
 \makeatother
 
 \setbeameroption{show notes}
+\setbeamertemplate{note page}[plain]
 
 \begin{document}
 
 \frame{\titlepage}
 
 \frame[plain]{
-  \centeredpar{
+  \centeredpar{0.9}{
     \justifying\scriptsize
     \textbf{Abstract.}
     ``Hi. Today I have started working on specifying and implementing
@@ -110,7 +127,7 @@
     \medskip
     The talk will give a subjective survey of the history of Pugs. We will pay
     particular attention to the special manner with which Audrey Tang led the project and
-    what the philosophy ``-Ofun'' meant to the developers. We'll also discuss
+    what the philosophy ``-O\emph{fun}'' meant to the developers. We'll also discuss
     which parts of Pugs were absorbed into other implementations of Perl~6 and
     which influence Pugs had on the Perl and Haskell communities.
     \medskip
@@ -131,7 +148,7 @@
 
 \logo{\includegraphics[scale=0.13]{images/audreyt2.jpeg}}
 \begin{frame}\frametitle{The beginning}
-  \centeredpar{
+  \centeredpar{0.9}{
     \hil{``Hi. Today I have started working on specifying and implementing
     Featherweight Perl 6 (FP6), a side-effect-free subset of Perl~6.''}
 
@@ -291,13 +308,14 @@ Leaving pugs.\end{verbatim}
 \end{frame}
 
 \note{
-  \justifying
-  For school reasons, I withdrew from Pugs development before its active phase
-  ended. Therefore I'm not qualified to report on the reasons for its end
-  and deem it unresponsible to speculate in public.
-
-  Note that Pugs is still kept compatible with respect to new GHC
-  releases.\par
+  \begin{itemize}
+    \justifying
+    \item For school reasons, I withdrew from Pugs development before its active phase
+    ended. Therefore I'm not qualified to report on the reasons for its end
+    and deem it unresponsible to speculate in public.
+    \item Note that Pugs is still kept compatible with respect to new GHC
+    releases.
+  \end{itemize}
 }
 
 % Reasons may or may not include (sorted alphabetically):
@@ -319,23 +337,135 @@ Leaving pugs.\end{verbatim}
 % Also see the thread http://perlmonks.org/?node_id=835731, containing posts
 % from chromatic and Audrey. *Please* don't trust my assessment. I don't have
 % any personal familiarity with the end of Pugs's active life and gathered
-% those speculations only from variou online sources.
+% those speculations only from various online sources.
 
-\section{Long-term results of Pugs}
 
-\begin{frame}\frametitle{Long-term results of Pugs}
+\section{Pugs's unique culture}
+
+\subsection{Test-driven development}
+
+\begin{frame}\frametitle{Test-driven development}
+  \begin{itemize}
+    \item Tests as to do lists.
+    \item Tests as bug reports.
+    \item Tests as specification.
+  \end{itemize}
+
+  \begin{center}
+    \includegraphics[scale=0.5]{images/test-all-the-things.jpeg}
+  \end{center}
+\end{frame}
+
+
+\subsection{Transparency}
+
+{\setbeamertemplate{background canvas}{\includegraphics[width=\paperwidth]{images/transparency}}
+\begin{frame}\frametitle{Transparency}
+  \begin{itemize}
+    \item Audrey's journal: documenting progress, spreading excitement
+    \item Public IRC logs
+    \item svnbot, announcing new commits
+    \item ``Private code $=$ dead code.'' ``url?''
+  \end{itemize}
+\end{frame}}
+
+
+\subsection{Optimizing for fun}
+
+\begin{frame}\frametitle{Pugs's unique culture}
+  \begin{center}
+    \Huge
+    \only<1>{\hcancel{\scalebox{2.5}{-O\hil{2}?}}{0pt}{3pt}{0pt}{-2pt}}
+    \only<2>{\hcancel{\scalebox{2.5}{-O\hil{s}?}}{0pt}{3pt}{0pt}{-2pt}}
+  \end{center}
+\end{frame}
+
+{\setbeamercolor{frametitle}{bg=mypurple,fg=white}
+\setbeamertemplate{background canvas}{\includegraphics[width=\paperwidth]{images/mario.jpeg}}
+\begin{frame}\frametitle{Optimizing for fun}
+  \begin{center}
+    \Huge
+    \scalebox{2.5}{-O\hil{fun}!}
+  \end{center}
+
+  \begin{itemize}
+    \item Liberal granting of commit bits.
+    \item Forgiveness $>$ permission.
+    \item ``Imagineering'', sketching ideas with code.
+    \item Many subprojects, avoiding deadlocks.
+  \end{itemize}
+
+  \pause
+  \centeredpar{0.85}{
+    \hil{Audrey single-handedly bootstrapped a diverse and tight-knit
+    community of lambdacamels, sharing a common vision and thoroughly
+    enjoying their time.}
+    Thank you, Audrey. $\heartsuit$
+  }
+\end{frame}}
+
+\note{
+  \begin{itemize}
+    \item ``Patches are boring, commits are fun.''
+    \item The diverse community was very welcoming. Trolls were hugged and
+    turned into committers.
+    \item Check out
+    \href{https://speakerdeck.com/audreyt/ofun-optimizing-for-fun}{Audrey's
+    slides \emph{-Ofun: Optimizing for Fun}}.
+  \end{itemize}
+}
+
+\note{
+  \begin{itemize}
+    \justifying
+    \item \sourcedquote{One of my goals of this project is to keep it dual-cultured. So the
+    source tree is managed with both svk and darcs; the build system requires
+    both Perl5 and GHC; I will submit my Apocrypha series of design documents
+    as monthly articles to both Perl.com and The Monad Reader; the project info
+    is on both CPAN and the Haskell Wiki; etc, etc.}{Audrey Tang}{February 6st,
+    2005}{http://wayback.archive.org/web/20050206202119/http://use.perl.org/~autrijus/journal/}
+
+    \item \sourcedquote{In other news, Pugs was mentioned on The Haskell
+    Sequence today. Indeed, I have noted that a significant part of questions
+    asked in \#haskell are from camelfolks. Conversely, we saw a large influx
+    from lambdafolks to \#perl6 as well. Lots of knowledge transfer is
+    happening, which makes me really happy.}{Audrey Tang}{February 24th,
+    2005}{http://pugs.blogs.com/pugs/2005/02/day_24_an_amazi.html}
+  \end{itemize}
+}
+
+
+\section{Long-term contributions of Pugs}
+
+\begin{frame}\frametitle{Long-term contributions of Pugs}
   \begin{itemize}
     \item Renewed interest in Perl 6.
     \item Major refinements of the specification.
     \pause
-    \item \hil{The test suite.} More than~$10\,000$ unit tests.
+    \item \hil{The test suite.} Approximately $20\,000$ unit tests.
     \pause
     \item The culture.
     \item Contribution to Haskell's popularity.
     \pause
     \item \hil{Moose.}
+
+    \begin{center}\includegraphics[scale=0.3]{images/moose.jpeg}\end{center}
   \end{itemize}
 \end{frame}
+
+\note{
+  \begin{itemize}
+    \justifying
+    \item \sourcedquote{This last year, we were starting to lose our sense of
+    fun in the Perl community. Though we tried to be careful about not making
+    promises, everyone knew in their hearts that five years is an awfully long
+    time to wait for anything. People were getting tired and discouraged and a
+    little bit dreary.
+
+    Then [Audrey Tang] showed up.}{Larry Wall}{August
+    2005 (OSCON)}{http://www.perl.com/pub/2005/09/22/onion.html}
+  \end{itemize}
+}
 
 \appendix
 
@@ -391,7 +521,11 @@ Leaving pugs.\end{verbatim}
 \begin{frame}[label=rules]\frametitle{Day 99: ``Full named rules!''}
   % http://pugs.blogs.com/pugs/2005/05/day_99_full_nam.html
 
-  % XXX
+  Perl 6 rules: Named regexes that form a formal grammar. Capture objects can
+  be full-fledged abstract syntax trees.
+
+  % http://perlgeek.de/en/article/mutable-grammar-for-perl-6 (2008)
+  \inputminted{perl}{code-snippets/day99-rules.pl}
 
   \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
 \end{frame}
@@ -400,13 +534,6 @@ Leaving pugs.\end{verbatim}
 \note{
   \begin{itemize}
     \justifying
-    \item \sourcedquote{One of my goals of this project is to keep it dual-cultured. So the
-    source tree is managed with both svk and darcs; the build system requires
-    both Perl5 and GHC; I will submit my Apocrypha series of design documents
-    as monthly articles to both Perl.com and The Monad Reader; the project info
-    is on both CPAN and the Haskell Wiki; etc, etc.}{Audrey Tang}{February 6st,
-    2005}{http://wayback.archive.org/web/20050206202119/http://use.perl.org/~autrijus/journal/}
-
     \item Foreshadowing node.js:
     \sourcedquote{Indeed, if JavaScript2 does survive the standardization
     process, it is entirely possible that it may become the next Ruby, because
@@ -414,13 +541,6 @@ Leaving pugs.\end{verbatim}
     motivation -- the same reason to keep Pugs targetable to multiple
     backends.}{Audrey Tang}{October 30th,
     2005}{http://wayback.archive.org/web/20060924085336/http://use.perl.org/journal.pl?op=display&uid=1505&start=10}
-
-    \item \sourcedquote{In other news, Pugs was mentioned on The Haskell
-    Sequence today. Indeed, I have noted that a significant part of questions
-    asked in \#haskell are from camelfolks. Conversely, we saw a large influx
-    from lambdafolks to \#perl6 as well. Lots of knowledge transfer is
-    happening, which makes me really happy.}{Audrey Tang}{February 24th,
-    2005}{http://pugs.blogs.com/pugs/2005/02/day_24_an_amazi.html}
   \end{itemize}
 }
 
@@ -470,5 +590,6 @@ PIL2JS
 
 2006-03-15
 Moose-0.01 released.
+http://perlcast.com/2010/07/12/stevan-little-on-moose/
 
 http://perlmonks.org/?node=perl+oddities
