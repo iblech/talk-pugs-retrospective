@@ -35,7 +35,7 @@
 \useinnertheme{rectangles}
 \setbeamercovered{invisible}
 
-\setbeamertemplate{title page}[default][colsep=-1bp,rounded=false,shadow=false,bg=white]
+\setbeamertemplate{title page}[default][colsep=-1bp,rounded=false,shadow=false]
 \setbeamertemplate{frametitle}[default][colsep=-2bp,rounded=false,shadow=false,center]
 
 \setbeamertemplate{navigation symbols}{}
@@ -258,7 +258,7 @@ Leaving pugs.\end{verbatim}
     \item[Day 50] Compiling to Parrot
 
     \item[Day 69] Autovivification, tied magic, slice
-    assignment, \ldots{} \hyperlink{tied-env}{\beamerbutton{see code}}
+    assignment \hyperlink{tied-env}{\beamerbutton{see code}}
 
     \item[Day 85] BEGIN blocks
     \hyperlink{begin-blocks}{\beamerbutton{see code}}
@@ -268,10 +268,74 @@ Leaving pugs.\end{verbatim}
 
     \item[Day 88] ``A shiny new monad.''
     \hyperlink{shiny-monad}{\beamerbutton{see code}}
+
+    \item[Day 99] ``Full named rules!''
+    \hyperlink{rules}{\beamerbutton{see code}}
   \end{Mdescription}
 \end{frame}
 
 % Continue here: http://pugs.blogs.com/pugs/2005/05/page/2/.
+
+
+\subsection{The end}
+
+\begin{frame}\frametitle{The end}
+  \begin{Mdescription}{Beginning of 2007}
+    \item[Beginning of 2007]
+      Active development of Pugs stalls.
+  \end{Mdescription}
+
+  \begin{center}
+    (discussion only verbally)
+  \end{center}
+\end{frame}
+
+\note{
+  \justifying
+  For school reasons, I withdrew from Pugs development before its active phase
+  ended. Therefore I'm not qualified to report on the reasons for its end
+  and deem it unresponsible to speculate in public.
+
+  Note that Pugs is still kept compatible with respect to new GHC
+  releases.\par
+}
+
+% Reasons may or may not include (sorted alphabetically):
+%
+% * "Low-hanging fruits" gradually vanished. Progress was not as rapid as
+%   in the early days.
+%
+% * Audrey got ill.
+%
+% * Efforts were redirected to bringing some of Perl 6's unique features
+%   to Perl 5.
+%
+% * Further development required advances in the host language, Haskell.
+%
+% * Missed insight: A Perl 6 compiler has to be tightly coupled with a
+%   rules engine, to allow for the compile-time syntax modifications
+%   which Perl 6 allows.
+%
+% Also see the thread http://perlmonks.org/?node_id=835731, containing posts
+% from chromatic and Audrey. *Please* don't trust my assessment. I don't have
+% any personal familiarity with the end of Pugs's active life and gathered
+% those speculations only from variou online sources.
+
+\section{Long-term results of Pugs}
+
+\begin{frame}\frametitle{Long-term results of Pugs}
+  \begin{itemize}
+    \item Renewed interest in Perl 6.
+    \item Major refinements of the specification.
+    \pause
+    \item \hil{The test suite.} More than~$10\,000$ unit tests.
+    \pause
+    \item The culture.
+    \item Contribution to Haskell's popularity.
+    \pause
+    \item \hil{Moose.}
+  \end{itemize}
+\end{frame}
 
 \appendix
 
@@ -322,11 +386,22 @@ Leaving pugs.\end{verbatim}
   \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
 \end{frame}
 
+\section{Day 99: ``Full named rules!''}
+
+\begin{frame}[label=rules]\frametitle{Day 99: ``Full named rules!''}
+  % http://pugs.blogs.com/pugs/2005/05/day_99_full_nam.html
+
+  % XXX
+
+  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
+\end{frame}
+
+
 \note{
   \begin{itemize}
     \justifying
     \item \sourcedquote{One of my goals of this project is to keep it dual-cultured. So the
-    source tree is managed with bth svk and darcs; the build system requires
+    source tree is managed with both svk and darcs; the build system requires
     both Perl5 and GHC; I will submit my Apocrypha series of design documents
     as monthly articles to both Perl.com and The Monad Reader; the project info
     is on both CPAN and the Haskell Wiki; etc, etc.}{Audrey Tang}{February 6st,
@@ -364,6 +439,12 @@ http://perlmonks.org/?node_id=835731
 https://gist.github.com/quchen/5280339
 trolling #haskell
 
+http://developers.slashdot.org/story/05/10/09/1831219/optimizing-development-for-fun
+frivolous toy interpreter
+
+http://www.nntp.perl.org/group/perl.perl6.language/2005/02/msg19263.html
+kudos to autrijus
+
 pioneering techniques:
 GADTs
 
@@ -380,3 +461,14 @@ state/FIRST
 macros
 smokeserver
 PIL2JS
+
+2005-07-20
+03:07 stevan  geoffb: I think "moose" is a private joke between nothingmuch and himself :)
+
+2006-03-06
+22:03 stevan_ audreyt: I have to run (dinnertime), but I have to show you Moose.pm soon, it is my (Class::MOP based) answer to Spiffy :)
+
+2006-03-15
+Moose-0.01 released.
+
+http://perlmonks.org/?node=perl+oddities
