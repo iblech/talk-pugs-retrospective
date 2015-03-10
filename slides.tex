@@ -269,7 +269,7 @@ Leaving pugs.\end{verbatim}
 \subsection{Further highlights}
 
 \begin{frame}[label=further-highlights]\frametitle{Further highlights}
-  \begin{Mdescription}{Tag 00}
+  \begin{Mdescription}{Tag 000}
     \item[Day 47] ``Perl 5 regular expressions landed.''
     \hyperlink{perl5re}{\beamerbutton{see code}}
 
@@ -289,12 +289,18 @@ Leaving pugs.\end{verbatim}
 
     \item[Day 99] ``Full named rules!''
     \hyperlink{rules}{\beamerbutton{see code}}
+
+    \item[Day 100] ``OO support landed!'' (a first sketch)
+
+    \item[Day 107] User-defined operators, Inline::Pugs
+    \hyperlink{user-defined-ops}{\beamerbutton{see code}}
   \end{Mdescription}
 
   \hyperlink{the-end}{\beamerbutton{skip details}}
 \end{frame}
+% XXX: Align hyperlinks
 
-% Continue here: http://pugs.blogs.com/pugs/2005/05/page/2/.
+% Continue here: http://pugs.blogs.com/pugs/2005/05/page/1/.
 
 
 \subsubsection{Day 47: ``Perl 5 regular expressions landed.''}
@@ -359,6 +365,19 @@ Leaving pugs.\end{verbatim}
 
   % http://perlgeek.de/en/article/mutable-grammar-for-perl-6 (2008)
   \inputminted{perl}{code-snippets/day99-rules.pl}
+
+  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
+\end{frame}
+
+
+\subsubsection{Day 107: User-defined operators}
+
+\begin{frame}[label=user-defined-ops]\frametitle{Day 107: User-defined operators}
+  % http://pugs.blogs.com/pugs/2005/05/day_106_apacher.html
+
+  \inputminted{perl}{code-snippets/day107-user-defined-ops.pl}
+  \medskip
+  \inputminted{haskell}{code-snippets/day107-parser.hs}
 
   \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
 \end{frame}
