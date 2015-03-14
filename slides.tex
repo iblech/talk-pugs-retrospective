@@ -36,9 +36,9 @@
   \includegraphics[scale=0.35]{images/timeline} \\[0.8em]
   Ingo Blechschmidt \\
   \small \texttt{<iblech@web.de>} \\
-  {\scriptsize March ??th, 2015}
+  {\scriptsize April 13th, 2015}
 }{Ingo Blechschmidt}}
-\date{March ??th, 2015}
+\date{April 13th, 2015}
 
 \usetheme{Warsaw}
 \usecolortheme{seahorse}
@@ -64,7 +64,7 @@
 
 \newcommand{\hil}[1]{{\usebeamercolor[fg]{item}{\textbf{#1}}}}
 
-\newcommand{\atpos}[4]{%
+\newcommand{\atpos}[1]{%
   \begin{tikzpicture}[remember picture, overlay]%
     \node[anchor=south east] at (current page.south east) {#1};
   \end{tikzpicture}%
@@ -294,6 +294,15 @@ Leaving pugs.\end{verbatim}
 
     \item[Day 107] User-defined operators, Inline::Pugs
     \hyperlink{user-defined-ops}{\beamerbutton{see code}}
+
+    \item[Day 109] gather/take
+    \hyperlink{gather-take}{\beamerbutton{see code}}
+
+    \item[Day 111] Hyper operators
+    \hyperlink{hyper-operators}{\beamerbutton{see code}}
+
+    \item[Day 113] ``Pugs runs CPAN modules!''
+    \hyperlink{pugs-cpan}{\beamerbutton{see code}}
   \end{Mdescription}
 
   \hyperlink{the-end}{\beamerbutton{skip details}}
@@ -378,6 +387,54 @@ Leaving pugs.\end{verbatim}
   \inputminted{perl}{code-snippets/day107-user-defined-ops.pl}
   \medskip
   \inputminted{haskell}{code-snippets/day107-parser.hs}
+
+  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
+\end{frame}
+
+
+\subsubsection{Day 109: gather/take}
+
+\begin{frame}[label=gather-take]\frametitle{Day 109: gather/take}
+  % http://pugs.blogs.com/pugs/2005/05/day_109_corouti.html
+
+  \vspace{-0.5em}
+  \only<1>{\inputminted{perl}{code-snippets/day109-gather-take.pl}}
+
+  \pause
+  \inputminted{haskell}{code-snippets/day109-prim.hs}
+
+  \vspace{-4em}
+  \begin{columns}
+    \begin{column}{0.7\textwidth}
+    \end{column}
+    \begin{column}{0.3\textwidth}
+      \scriptsize
+      \inputminted[linenos=false]{perl}{code-snippets/day109-gather-take.pl}
+    \end{column}
+  \end{columns}
+
+  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
+\end{frame}
+
+
+\subsubsection{Day 111: Hyper operators}
+
+\begin{frame}[label=hyper-operators]\frametitle{Day 109: Hyper operators}
+  % http://pugs.blogs.com/pugs/2005/05/day_111_hyper_o.html
+
+  \inputminted{perl}{code-snippets/day111-hyper-operators.pl}
+
+  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
+\end{frame}
+
+
+\subsubsection{Day 113: ``Pugs runs CPAN modules!!''}
+
+\begin{frame}[label=pugs-cpan]\frametitle{Day 113: ``Pugs runs CPAN
+modules!!''}
+  % http://pugs.blogs.com/pugs/2005/05/day_113_pugs_ru.html
+
+  \inputminted{perl}{code-snippets/day113-pugs-cpan.pl}
 
   \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
 \end{frame}
@@ -580,6 +637,10 @@ Leaving pugs.\end{verbatim}
   developed hand in hand.
 \end{itemize}
 
+Discuss why Haskell was chosen as implementation language.
+Maybe clarify that this is not a good question, as it was the other way round.
+But stress the features of Haskell which made it the canonical choice.
+
 http://www.slideshare.net/autang/pugs-a-perl-6-implementation
 http://www.slideshare.net/autang/ofun-optimizing-for-fun
 http://perlmonks.org/?node_id=835731
@@ -609,6 +670,11 @@ state/FIRST
 macros
 smokeserver
 PIL2JS
+
+http://pugs.blogs.com/pugs/2005/05/day_109_corouti.html
+<iblech> Yeah, I start to grok Haskell :)
+<autrijus> iblech++ # demonstrating that the productivity is really not me,
+it's really Haskell :)
 
 2005-07-20
 03:07 stevan  geoffb: I think "moose" is a private joke between nothingmuch and himself :)
