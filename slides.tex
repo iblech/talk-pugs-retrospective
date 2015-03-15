@@ -269,55 +269,63 @@ Leaving pugs.\end{verbatim}
 \subsection{Further highlights}
 
 \begin{frame}[label=further-highlights]\frametitle{Further highlights}
-  \begin{Mdescription}{Tag 000}
+  \begin{Mdescription}{Day 000}
     \item[Day 47] ``Perl 5 regular expressions landed.''
-    \hyperlink{perl5re}{\beamerbutton{see code}}
+    \hfill\hyperlink{perl5re}{\beamerbutton{see code}}
 
     \item[Day 50] Compiling to Parrot
 
-    \item[Day 69] Autovivification, tied magic, slice
-    assignment \hyperlink{tied-env}{\beamerbutton{see code}}
+    \item[Day 69] Autovivification, tied magic, slice assignment
+    \hfill\hyperlink{tied-env}{\beamerbutton{see code}}
 
     \item[Day 85] BEGIN blocks
-    \hyperlink{begin-blocks}{\beamerbutton{see code}}
+    \hfill\hyperlink{begin-blocks}{\beamerbutton{see code}}
 
     \item[Day 87] ``STM: Atomic power!''
-    \hyperlink{stm}{\beamerbutton{see code}}
+    \hfill\hyperlink{stm}{\beamerbutton{see code}}
 
     \item[Day 88] ``A shiny new monad.''
-    \hyperlink{shiny-monad}{\beamerbutton{see code}}
+    \hfill\hyperlink{shiny-monad}{\beamerbutton{see code}}
 
     \item[Day 99] ``Full named rules!''
-    \hyperlink{rules}{\beamerbutton{see code}}
+    \hfill\hyperlink{rules}{\beamerbutton{see code}}
 
     \item[Day 100] ``OO support landed!'' (a first sketch)
 
     \item[Day 107] User-defined operators, Inline::Pugs
-    \hyperlink{user-defined-ops}{\beamerbutton{see code}}
+    \hfill\hyperlink{user-defined-ops}{\beamerbutton{see code}}
 
     \item[Day 109] gather/take
-    \hyperlink{gather-take}{\beamerbutton{see code}}
+    \hfill\hyperlink{gather-take}{\beamerbutton{see code}}
 
     \item[Day 111] Hyper operators
-    \hyperlink{hyper-operators}{\beamerbutton{see code}}
+    \hfill\hyperlink{hyper-operators}{\beamerbutton{see code}}
 
     \item[Day 113] ``Pugs runs CPAN modules!''
-    \hyperlink{pugs-cpan}{\beamerbutton{see code}}
+    \hfill\hyperlink{pugs-cpan}{\beamerbutton{see code}}
   \end{Mdescription}
 
   \hyperlink{the-end}{\beamerbutton{skip details}}
 \end{frame}
-% XXX: Align hyperlinks
 
-% Continue here: http://pugs.blogs.com/pugs/2005/05/page/1/.
+\begin{frame}[label=further-highlights]\frametitle{Further highlights, cont'd}
+  \begin{Mdescription}{Day 000}
+    \item[Day 117] evalbot (using a new safe mode)
 
+    \item[Day 128] Academic paper for the Haskell Workshop 2005
+  \end{Mdescription}
+
+  \hyperlink{the-end}{\beamerbutton{skip details}}
+\end{frame}
+% Finished: http://pugs.blogs.com/pugs/2005/06/page/1/.
+
+
+\logo{\hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}}
 
 \subsubsection{Day 47: ``Perl 5 regular expressions landed.''}
 
 \begin{frame}[label=perl5re]\frametitle{Day 47: ``Perl 5 regular expressions landed.''}
   \inputminted{text}{code-snippets/day47-regex.pl}
-
-  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
 \end{frame}
 
 
@@ -325,8 +333,6 @@ Leaving pugs.\end{verbatim}
 
 \begin{frame}[label=tied-env]\frametitle{Day 69: Tied \texttt{\%*ENV}}
   \inputminted{haskell}{code-snippets/day69-ast.hs}
-
-  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
 \end{frame}
 
 
@@ -334,8 +340,6 @@ Leaving pugs.\end{verbatim}
 
 \begin{frame}[label=begin-blocks]\frametitle{Day 85: BEGIN blocks}
   \inputminted{haskell}{code-snippets/day85-parser.hs}
-
-  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
 \end{frame}
 
 
@@ -343,8 +347,6 @@ Leaving pugs.\end{verbatim}
 
 \begin{frame}[label=stm]\frametitle{Day 87: ``STM: Atomic power!''}
   \inputminted{perl}{code-snippets/day87-atomic.pl}
-
-  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
 \end{frame}
 
 
@@ -359,8 +361,6 @@ Leaving pugs.\end{verbatim}
     \hil{$\langle$obra$\rangle$} \> I mean it smoked 30\,\% faster. \\[0.3em]
     \hil{$\langle$audreyt$\rangle$} \> oh. yeah. I rewrote the monad
   \end{tabbing}
-
-  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
 \end{frame}
 
 
@@ -374,8 +374,6 @@ Leaving pugs.\end{verbatim}
 
   % http://perlgeek.de/en/article/mutable-grammar-for-perl-6 (2008)
   \inputminted{perl}{code-snippets/day99-rules.pl}
-
-  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
 \end{frame}
 
 
@@ -387,8 +385,6 @@ Leaving pugs.\end{verbatim}
   \inputminted{perl}{code-snippets/day107-user-defined-ops.pl}
   \medskip
   \inputminted{haskell}{code-snippets/day107-parser.hs}
-
-  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
 \end{frame}
 
 
@@ -412,8 +408,6 @@ Leaving pugs.\end{verbatim}
       \inputminted[linenos=false]{perl}{code-snippets/day109-gather-take.pl}
     \end{column}
   \end{columns}
-
-  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
 \end{frame}
 
 
@@ -423,8 +417,6 @@ Leaving pugs.\end{verbatim}
   % http://pugs.blogs.com/pugs/2005/05/day_111_hyper_o.html
 
   \inputminted{perl}{code-snippets/day111-hyper-operators.pl}
-
-  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
 \end{frame}
 
 
@@ -435,10 +427,14 @@ modules!!''}
   % http://pugs.blogs.com/pugs/2005/05/day_113_pugs_ru.html
 
   \inputminted{perl}{code-snippets/day113-pugs-cpan.pl}
-
-  \hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}
 \end{frame}
 
+% XXX: Hackatons
+% Vienna?
+% Leo in June 2005
+% Toronto in June 2005
+
+\logo{}
 
 \subsection{The end}
 
