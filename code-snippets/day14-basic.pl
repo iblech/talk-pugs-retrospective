@@ -8,4 +8,4 @@ sub cool { fine($_) ~ " # We've got " ~ toys }
 sub fine { "ok " ~ $_ }
 sub toys { "fun and games!" }
 
-say cool 2 # and that's it, folks!
+say cool 2;  # and that's it, folks!
