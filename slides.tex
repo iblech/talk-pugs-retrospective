@@ -189,10 +189,10 @@ Commands available from the prompt:
 . <exp>         = show the syntax tree of an expression
 ? <exp>         = evaluate an expression
 
-pugs> . ('1' & "2") * ( 3.0 | "4abcd" )
+pugs> . ('1' & "2") * (3.0 | "4abcd")
 Op2 "*" (Op2 "|" (Val (VStr "1")) (Val (VStr "2"))) (Op2 "&" (Val (VNum 3.0)) (Val (VStr "4abcd")))
 
-pugs> ('1' & "2") * ( 3.0 | "4abcd" )
+pugs> ('1' & "2") * (3.0 | "4abcd")
 ((3.0 | 4.0) & (6.0 | 8.0))
 
 pugs> :q
