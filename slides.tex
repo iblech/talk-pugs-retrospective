@@ -30,7 +30,14 @@
 
 \usepackage[protrusion=true,expansion=false]{microtype}
 
-\title[Pugs, an experimental Perl 6 platform: a retrospective]{A retrospective on Pugs}
+\usepackage{fontspec}
+\newfontfamily\DejaSans{DejaVu Sans}
+
+\title[Pugs, an experimental Perl 6 platform: a retrospective]{
+  {\DejaSans ☺}
+  A retrospective on Pugs
+  {\DejaSans ☺}
+}
 \author[Augsburg.pm]{\texorpdfstring{
   \vspace{-0.5em} \\
   \includegraphics[scale=0.35]{images/timeline} \\[0.8em]
@@ -313,12 +320,22 @@ Leaving pugs.\end{verbatim}
     \item[Day 117] evalbot (using a new safe mode)
 
     \item[Day 128] Academic paper for the Haskell Workshop 2005
+
+    \item[Day 164] ``Perl 6 compiled to\ldots{} JavaScript!''
+    \item[Day 166] ``Mandel.p6 on JavaScript.''
+    \item[Day 177] ``JS backend 43\% pass''
+    \item[Day 193] ``JSAN and CPAN, here we come!''
+    \item[Day 219] Perl 6 on JavaScript passes 91\%.
   \end{Mdescription}
 
   \hyperlink{the-end}{\beamerbutton{skip details}}
 \end{frame}
-% Finished: http://pugs.blogs.com/pugs/2005/06/page/1/.
+% Finished http://pugs.blogs.com/pugs/2005/12/page/1/.
 
+% Day 162: Say hello to P5ugs!
+% `mandel.p6` compiled to Parrot: Mar 24
+
+% XXX: Perl-6-on-Perl-5 effort
 
 \logo{\hyperlink{further-highlights}{\beamerbutton{Continue slides \ldots}}}
 
@@ -429,10 +446,16 @@ modules!!''}
   \inputminted{perl}{code-snippets/day113-pugs-cpan.pl}
 \end{frame}
 
+\subsubsection{Day 164 and others: Perl 6 on JavaScript}
+\begin{frame}[label=pil2js]\frametitle{Day 164 and others: Perl 6 on JavaScript}
+  \inputminted{perl}{code-snippets/day193-jsan.pl}
+\end{frame}
+
 % XXX: Hackatons
 % Vienna?
 % Leo in June 2005
 % Toronto in June 2005
+% Liz in October 2005
 
 \logo{}
 
@@ -483,6 +506,8 @@ modules!!''}
 
 
 \section{Pugs's unique culture}
+
+% XXX: Academic paper-reading
 
 \subsection{Test-driven development}
 
@@ -686,3 +711,6 @@ http://perlmonks.org/?node=perl+oddities
 
 http://strangelyconsistent.org/blog/happy-10th-anniversary-perl-6
 https://www.fsf.org/blogs/community/recognizing-an-inspiring-woman-for-ada-lovelace-day-audrey-tang
+
+https://web.archive.org/web/20051125071047/http://www.oreillynet.com/pub/wlg/7996
+Geoff Broadwell on -Ofun
