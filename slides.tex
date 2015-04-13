@@ -150,6 +150,37 @@
 \frame{\tableofcontents}
 
 
+\begin{frame}[fragile]\frametitle{A glimpse of Perl 6}
+  \only<1>{\inputminted{perl}{code-snippets/a-glimpse-of-perl6-1.pl}}
+  \only<2>{\inputminted{perl}{code-snippets/a-glimpse-of-perl6-2.pl}}
+  \pause
+
+  \justifying
+  closures \textbullet{}
+  anonymous types \textbullet{}
+  roles and traits \textbullet{}
+  named arguments \textbullet{}
+  expressive routine signatures \textbullet{}
+  a strong meta object system \textbullet{}
+  macros \textbullet{}
+  state variables \textbullet{}
+  named regexes for easy reuse \textbullet{}
+  cleaned up regular expressions \textbullet{}
+  grammars for parsing \textbullet{}
+  lazy lists \textbullet{}
+  junctions of values \textbullet{}
+  optional type annotations (gradual typing) \textbullet{}
+  powerful run-time multi dispatch \textbullet{}
+  lexical imports
+  \par
+\end{frame}
+
+\begin{frame}
+  \includegraphics[width=0.45\textwidth]{images/perl-6-parsing.jpeg}
+
+  \hfill\includegraphics[width=0.45\textwidth]{images/implementing-perl-6.jpeg}
+\end{frame}
+
 \section{Timeline of Pugs development}
 
 \subsection{The beginning}
@@ -175,6 +206,13 @@
   \end{Mdescription}
 \end{frame}
 \logo{}
+
+\begin{frame}\frametitle{Haskell?}
+  \begin{center}
+    \vbox{\includegraphics[width=0.35\textwidth]{images/haskell-meme-2.jpeg}\includegraphics[width=0.35\textwidth]{images/haskell-meme-4.jpeg}\\
+    \includegraphics[width=0.35\textwidth]{images/haskell-meme-5.jpeg}\includegraphics[width=0.35\textwidth]{images/haskell-meme-6.jpeg}}
+  \end{center}
+\end{frame}
 
 % http://wayback.archive.org/web/20050209100505/http://haskell.org/hawiki/Perl6UsersGolfingSystem
 \begin{frame}[fragile]\frametitle{Screenshot}\scriptsize
@@ -315,13 +353,17 @@ Leaving pugs.\end{verbatim}
   \hyperlink{the-end}{\beamerbutton{skip details}}
 \end{frame}
 
-\begin{frame}[label=further-highlights]\frametitle{Further highlights, cont'd}
+\begin{frame}[label=further-highlights-cont]\frametitle{Further highlights, cont'd}
   \begin{Mdescription}{Day 000}
     \item[Day 117] evalbot (using a new safe mode)
 
     \item[Day 128] Academic paper for the Haskell Workshop 2005
+    (rejected)
+
+    \item[Day 162] ``Say hello to P5ugs!''
 
     \item[Day 164] ``Perl 6 compiled to\ldots{} JavaScript!''
+    \hfill\hyperlink{pil2js}{\beamerbutton{see code}}
     \item[Day 166] ``Mandel.p6 on JavaScript.''
     \item[Day 177] ``JS backend 43\% pass''
     \item[Day 193] ``JSAN and CPAN, here we come!''
@@ -447,7 +489,10 @@ modules!!''}
 \end{frame}
 
 \subsubsection{Day 164 and others: Perl 6 on JavaScript}
+\logo{\hyperlink{further-highlights-cont}{\beamerbutton{Continue slides \ldots}}}
 \begin{frame}[label=pil2js]\frametitle{Day 164 and others: Perl 6 on JavaScript}
+  \begin{center}\includegraphics[scale=0.25]{images/mandel-in-the-browser}\end{center}
+
   \inputminted{perl}{code-snippets/day193-jsan.pl}
 \end{frame}
 
@@ -529,7 +574,9 @@ modules!!''}
 {\setbeamertemplate{background canvas}{\includegraphics[width=\paperwidth]{images/transparency}}
 \begin{frame}\frametitle{Transparency}
   \begin{itemize}
-    \item Audrey's journal: documenting progress, spreading excitement
+    \item Audrey's journal: \\
+    \qquad\quad documenting progress, \\
+    \qquad\quad\qquad\quad spreading excitement
     \item Public IRC logs
     \item svnbot, announcing new commits
     \item ``Private code $=$ dead code.'' ``url?''
@@ -612,7 +659,7 @@ modules!!''}
     \item \hil{The test suite.} Approximately 20\,000 unit tests.
     \pause
     \item The culture.
-    \item Contribution to Haskell's popularity.
+    \item Publicity for Haskell.
     \pause
     \item \hil{Moose.}
 
