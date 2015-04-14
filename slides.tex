@@ -42,8 +42,8 @@
   \vspace{-0.5em} \\
   \includegraphics[scale=0.35]{images/timeline} \\[0.8em]
   Ingo Blechschmidt \\
-  \small \texttt{<iblech@web.de>} \\
-  {\scriptsize April 13th, 2015}
+  \scriptsize \texttt{<iblech@speicherleck.de>} \\
+  April 13th, 2015
 }{Ingo Blechschmidt}}
 \date{April 13th, 2015}
 
@@ -87,7 +87,7 @@
 
 \newcommand{\sourcedquote}[4]{%
   ``#1''\par%
-  {\raggedleft -- #2, #3, \href{#4}{link}\par}%
+  {\raggedleft -- #2, #3, \href{#4}{\underline{link}}\par}%
 }
 
 % Gonzalo Medina, http://tex.stackexchange.com/a/228198
@@ -139,9 +139,20 @@
     which influence Pugs had on the Perl and Haskell communities.
     \medskip
 
+    \textbf{About me.} While a school student, I contributed to Pugs in
+    2005, at first by porting modules and writing tests, then gradually also by
+    writing Haskell code and later by implementing a JavaScript backend. Audrey
+    and the unique spirit in the Pugs community had a strong and lasting
+    influence on me (exposing me to Haskell, category theory, and
+    a beautiful way of tending communities); I look back on very exciting and
+    fun days.
+    \medskip
+
     \textbf{Warning.} The account is mostly from memory and not properly
-    researched. Try not to trust it! Also note that \emph{the code excerpts are
-    edited for legibility}, i.\,e.\@ shortened at a few places.
+    researched. Try not to trust it! Also note that the timeline covers only
+    the year 2005 and that \emph{the code excerpts are
+    edited for legibility}, i.\,e.\@ shortened at a few places and not
+    reproduced verbatim.
     \par
   }
 }
@@ -149,10 +160,12 @@
 \setcounter{tocdepth}{2}
 \frame{\tableofcontents}
 
+\section{A glimpse of Perl 6}
 
 \begin{frame}[fragile]\frametitle{A glimpse of Perl 6}
   \only<1>{\inputminted{perl}{code-snippets/a-glimpse-of-perl6-1.pl}}
   \only<2>{\inputminted{perl}{code-snippets/a-glimpse-of-perl6-2.pl}}
+  \pause
   \pause
 
   \justifying
@@ -187,6 +200,7 @@
 
 \logo{\includegraphics[scale=0.13]{images/audreyt2.jpeg}}
 \begin{frame}\frametitle{The beginning}
+  \vspace*{-1em}
   \centeredpar{0.9}{
     \hil{``Hi. Today I have started working on specifying and implementing
     Featherweight Perl 6 (FP6), a side-effect-free subset of Perl~6.''}
@@ -198,7 +212,7 @@
     \item[2001] Apocalypse 1, first Perl 6 design document
     \item[2004] Many Apocalypse and Synopse documents
     \item[2005] Active discussion on perl6-language@perl.org
-    \item[2005] Pugs, providing the first implementation
+    \item[2005] Pugs, providing the first usable implementation
     \item[]
     \item[2005] Facebook
     \item[2005] YouTube
@@ -235,7 +249,7 @@ Commands available from the prompt:
 ? <exp>         = evaluate an expression
 
 pugs> . ('1' & "2") * (3.0 | "4abcd")
-Op2 "*" (Op2 "|" (Val (VStr "1")) (Val (VStr "2"))) (Op2 "&" (Val (VNum 3.0)) (Val (VStr "4abcd")))
+Op2 "*" (Op2 "&" (Val (VStr "1")) (Val (VStr "2"))) (Op2 "|" (Val (VNum 3.0)) (Val (VStr "4abcd")))
 
 pugs> ('1' & "2") * (3.0 | "4abcd")
 ((3.0 | 4.0) & (6.0 | 8.0))
@@ -253,66 +267,121 @@ Leaving pugs.\end{verbatim}
     2005}{http://wayback.archive.org/web/20050206202119/http://use.perl.org/~autrijus/journal/}
     \item TaPL refers to \emph{Types and Programming Languages}, a
     computer-science book on implementing programming languages.
-    \item Actually, there was an implementation before Pugs. Namely, a small
+    \item Audrey quickly dropped her initial plan to focus on a
+    side-effect-free subset.
+    \item There was an implementation before Pugs, a tiny
     project sitting in the Parrot source tree.
+    \item Audrey's first post contained a language semantics question. This
+    would be the beginning of continuing refinements of the specification, made
+    possible by the existence of a useful Perl~6 platform which allowed people
+    to play with Perl~6.
+  \end{itemize}
+}
+
+\note{
+  \begin{itemize}
+    \justifying
+    \item \sourcedquote{This last year, we were starting to lose our sense of
+    fun in the Perl community. Though we tried to be careful about not making
+    promises, everyone knew in their hearts that five years is an awfully long
+    time to wait for anything. People were getting tired and discouraged and a
+    little bit dreary.
+
+    Then [Audrey Tang] showed up.}{Larry Wall}{August
+    2005 (OSCON)}{http://www.perl.com/pub/2005/09/22/onion.html}
   \end{itemize}
 }
 
 
 \subsection{The early days}
 
-\begin{frame}[fragile]\frametitle{The early days}
+\begin{frame}[label=the-early-days]\frametitle{The early days}
   \begin{Mdescription}{Day 00}
-    \item<1-2|only@1-2>[Day 4] ``Parsec; 90\,\% of operators implemented!''
-
-    % https://github.com/audreyt/pugs/blob/e760c8600350603c10c825caf17ca5ce1e2846ae/src/Parser.hs
-    % https://github.com/audreyt/pugs/blob/e760c8600350603c10c825caf17ca5ce1e2846ae/src/Prim.hs
-    \only<1>{
-      \inputminted{haskell}{code-snippets/day4-ast.hs}
-    }
-
-    \only<2>{
-      \inputminted{haskell}{code-snippets/day4-parser.hs}
-      \medskip
-      \inputminted{haskell}{code-snippets/day4-prim.hs}
-    }
-
-    \item<3|only@3>[Day 8] ``Pugs 6.0.2; Turing Completeness''
-
-    % https://github.com/audreyt/pugs/blob/e760c8600350603c10c825caf17ca5ce1e2846ae/src/Eval.hs
-    User-defined subroutines, variable binding, \ldots\par
-    \inputminted{haskell}{code-snippets/day8-eval.hs}
-
-    \item<4|only@4>[Day 12] ``Refactoring''
-
-    eval(), rand(), \ldots\par
-    \inputminted{haskell}{code-snippets/day12-prim.hs}
-
-    \item<5|only@5>[Day 13] ``Continuations''
-
-    \inputminted{haskell}{code-snippets/day13-monads.hs}
-    \bigskip
-    \inputminted{haskell}{code-snippets/day13-ast.hs}
-
-    \item<6|only@6>[Day 14] ``All tests successful''
-
-    \inputminted{perl}{code-snippets/day14-basic.pl}
-
-    \item<7|only@7>[Day 20] ``6.0.8''
-
-    Hashes, pairs, many IO primitives, \ldots\par
-    \inputminted{perl}{code-snippets/day20-ycombinator.pl}
-
-    \item<8|only@8>[Day 23] ``Test.pm flies!''
-
-    First Perl 6 module, more than 400 unit tests, \ldots\par
-    \inputminted{perl}{code-snippets/day23-test.pm}
+    \item[Day 4] ``Parsec; 90\,\% of operators implemented!''
+    \hfill\hyperlink{parsec}{\beamerbutton{see code}}
+    \item[Day 8] ``Pugs 6.0.2; Turing Completeness''
+    \hfill\hyperlink{turing-completeness}{\beamerbutton{see code}}
+    \item[Day 12] ``Refactoring''
+    \hfill\hyperlink{refactoring}{\beamerbutton{see code}}
+    \item[Day 13] ``Continuations''
+    \hfill\hyperlink{continuations}{\beamerbutton{see code}}
+    \item[Day 14] ``All tests successful''
+    \hfill\hyperlink{all-tests-successful}{\beamerbutton{see code}}
+    \item[Day 20] ``6.0.8''
+    \hfill\hyperlink{608}{\beamerbutton{see code}}
+    \item[Day 23] ``Test.pm flies!''
+    \hfill\hyperlink{testpm}{\beamerbutton{see code}}
   \end{Mdescription}
+
+  \hyperlink{further-highlights}{\beamerbutton{skip details}}
+\end{frame}
+
+\note{
+  \justifying
+  As can be seen by the journal headlines, Pugs was extremely fast-moving. In
+  the early days, a Pugs build of a day ago was considered to be vastly
+  outdated. This had two reasons:
+  \begin{itemize}
+    \justifying
+    \item Firstly, Audrey was an astoundingly productive hacker, rapidly
+    implementing major features and attracting a large community of fellow
+    \emph{lambdacamels}.
+    \item Secondly, Haskell's unique features made it the language of choice
+    for implementing Perl~6. It allowed both for quick prototyping and easy
+    refactoring.
+  \end{itemize}
+}
+
+\logo{\hyperlink{the-early-days}{\beamerbutton{Continue slides \ldots}}}
+
+\begin{frame}[label=parsec]\frametitle{Day 4: ``Parsec; 90\,\% of operators implemented!''}
+  % https://github.com/audreyt/pugs/blob/e760c8600350603c10c825caf17ca5ce1e2846ae/src/Parser.hs
+  % https://github.com/audreyt/pugs/blob/e760c8600350603c10c825caf17ca5ce1e2846ae/src/Prim.hs
+  \only<1>{
+    \inputminted{haskell}{code-snippets/day4-ast.hs}
+  }
+  \pause
+
+  \inputminted{haskell}{code-snippets/day4-parser.hs}
+  \medskip
+  \inputminted{haskell}{code-snippets/day4-prim.hs}
+\end{frame}
+
+\begin{frame}[label=turing-completeness]\frametitle{Day 8: ``Pugs 6.0.2; Turing Completeness''}
+  % https://github.com/audreyt/pugs/blob/e760c8600350603c10c825caf17ca5ce1e2846ae/src/Eval.hs
+  User-defined subroutines, variable binding, \ldots\par
+  \inputminted{haskell}{code-snippets/day8-eval.hs}
+\end{frame}
+
+\begin{frame}[label=refactoring]\frametitle{Day 12: ``Refactoring''}
+  eval(), rand(), \ldots\par
+  \inputminted{haskell}{code-snippets/day12-prim.hs}
+\end{frame}
+
+\begin{frame}[label=continuations]\frametitle{Day 13: ``Continuations''}
+  \inputminted{haskell}{code-snippets/day13-monads.hs}
+  \bigskip
+  \inputminted{haskell}{code-snippets/day13-ast.hs}
+\end{frame}
+
+\begin{frame}[label=all-tests-successful]\frametitle{Day 14: ``All tests successful''}
+  \inputminted{perl}{code-snippets/day14-basic.pl}
+\end{frame}
+
+\begin{frame}[label=608]\frametitle{Day 20: ``6.0.8''}
+  Hashes, pairs, many IO primitives, \ldots\par
+  \inputminted{perl}{code-snippets/day20-ycombinator.pl}
+\end{frame}
+
+\begin{frame}[label=testpm]\frametitle{Day 23: ``Test.pm flies!''}
+  First Perl 6 module, more than 400 unit tests, \ldots\par
+  \inputminted{perl}{code-snippets/day23-test.pm}
 \end{frame}
 
 
 \subsection{Further highlights}
 
+\logo{}
 \begin{frame}[label=further-highlights]\frametitle{Further highlights}
   \begin{Mdescription}{Day 000}
     \item[Day 47] ``Perl 5 regular expressions landed.''
@@ -349,8 +418,6 @@ Leaving pugs.\end{verbatim}
     \item[Day 113] ``Pugs runs CPAN modules!''
     \hfill\hyperlink{pugs-cpan}{\beamerbutton{see code}}
   \end{Mdescription}
-
-  \hyperlink{the-end}{\beamerbutton{skip details}}
 \end{frame}
 
 \begin{frame}[label=further-highlights-cont]\frametitle{Further highlights, cont'd}
@@ -495,6 +562,24 @@ modules!!''}
 
   \inputminted{perl}{code-snippets/day193-jsan.pl}
 \end{frame}
+% http://irclog.perlgeek.de/perl6/2005-07-17
+
+\note{
+  \begin{itemize}
+    \justifying
+    \item JSAN was an attempt to bring a CPAN-like platform to JavaScript. The
+    JavaScript backend was able to use JSAN modules.
+    \item Foreshadowing node.js:
+    \sourcedquote{It is entirely possible that the JavaScript backend may prove
+    to be the most important one. [\ldots]
+    Indeed, if JavaScript2 does survive the standardization
+    process, it is entirely possible that it may become the next Ruby, because
+    writing programs that run at both client and server side is a strong
+    motivation -- the same reason to keep Pugs targetable to multiple
+    backends.}{Audrey Tang}{October 30th,
+    2005}{http://wayback.archive.org/web/20060924085336/http://use.perl.org/journal.pl?op=display&uid=1505&start=10}
+  \end{itemize}
+}
 
 % XXX: Hackatons
 % Vienna?
@@ -620,12 +705,24 @@ modules!!''}
 
 \note{
   \begin{itemize}
+    \justifying
     \item ``Patches are boring, commits are fun.''
     \item The diverse community was very welcoming. Trolls were hugged and
     turned into committers.
-    \item Check out
+    \item Somebody would come to \#perl6 and mention that \$FEATURE
+    does not work yet. Audrey would send them a commit bit, ask to create a
+    test exemplifying the missing feature, and often implement the feature till
+    the next day (or hour (or quarter of an hour)).
+    \item People worked on the Haskell parts of the interpreter and the
+    compiler, on unit tests, on porting and creating modules, on examples and
+    documentation, on various backends (Perl~5 and JavaScript) written in
+    Perl~5, on fun side projects (such as understanding type inference
+    algorithms), and many other things.
+    \item
     \href{https://speakerdeck.com/audreyt/ofun-optimizing-for-fun}{Audrey's
-    slides \emph{-Ofun: Optimizing for Fun}}.
+    slides \emph{-Ofun: Optimizing for Fun}} and Geoff Broadwell's
+    \href{https://web.archive.org/web/20051125071047/http://www.oreillynet.com/pub/wlg/7996}{article
+    on O'Reilly Network} are highly recommended reading.
   \end{itemize}
 }
 
@@ -668,46 +765,58 @@ modules!!''}
 \end{frame}
 
 \note{
-  \begin{itemize}
-    \justifying
-    \item \sourcedquote{This last year, we were starting to lose our sense of
-    fun in the Perl community. Though we tried to be careful about not making
-    promises, everyone knew in their hearts that five years is an awfully long
-    time to wait for anything. People were getting tired and discouraged and a
-    little bit dreary.
+  \begin{tabbing}
+    \hil{$\langle$stevan$\rangle$} \= \kill
+    \#perl6 on 2005-07-20: \\
+    \hil{$\langle$stevan$\rangle$} \>
+    geoffb: I think ``moose'' is a private joke between nothingmuch \\
+    \> and himself :) \\\\
+    \#perl6 on 2006-03-06: \\
+    \hil{$\langle$stevan$\rangle$} \>
+    audreyt: I have to run (dinnertime), but I have to show you \\
+    \> Moose.pm soon, it is my (Class::MOP based) answer to Spiffy :)
+  \end{tabbing}
 
-    Then [Audrey Tang] showed up.}{Larry Wall}{August
-    2005 (OSCON)}{http://www.perl.com/pub/2005/09/22/onion.html}
-  \end{itemize}
+  \justifying
+  stevan is, of course, Stevan Little. Moose originated in Stevan's work 
+  on the Perl 6 metamodel (which governs objects, classes, and metaclasses).
+  \par
+}
+
+\note{
+  \justifying\scriptsize
+  \sourcedquote{It came out of the Pugs project, which is a project that in
+  about 2005 started. It was Audrey Tang who was had decided that she wanted to
+  implement Perl 6 in Haskell. So it was sort of a very fun project. Audrey
+  coined the term “O-fun,” optimized for fun.\medskip
+
+  And lot of the goal of the project was to get some juice flowing back into
+  the Perl 6 community and really get a working or a semi-working
+  implementation so people could play with it.\medskip
+
+  One of the things that I did in that project was to prototype the object
+  system for Perl 6. I read over the Apocalypse 12, read up on a number of
+  different object systems in different languages such as Smalltalk, CLOS,
+  which is the Common Lisp Object System. Objective fees, objects run time,
+  Ruby, Python, all those things. We were doing a lot of research at time and
+  we tried to put a lot of that stuff, a lot of the good ideas, into the Perl 6
+  object system.\medskip
+
+  And then basically as the Pugs project started to peter out, I found myself
+  going back to my work code, which was your basic vanilla Perl 5.OO. And I
+  really craved all the features that I had been prototyping.\medskip
+
+  So months here and months there, I fiddled around and I finally came up with
+  a module called Class::MOP which is basically the basis on which Moose sits.
+  And so a couple months after Class::MOP, we released Moose and sort of got
+  running from there.}{Stevan Little}{December
+  2010}{http://perlcast.com/2010/07/12/stevan-little-on-moose/}
 }
 
 \appendix
 
 
-\note{
-  \begin{itemize}
-    \justifying
-    \item Foreshadowing node.js:
-    \sourcedquote{Indeed, if JavaScript2 does survive the standardization
-    process, it is entirely possible that it may become the next Ruby, because
-    writing programs that runs at both client and server side is a strong
-    motivation -- the same reason to keep Pugs targetable to multiple
-    backends.}{Audrey Tang}{October 30th,
-    2005}{http://wayback.archive.org/web/20060924085336/http://use.perl.org/journal.pl?op=display&uid=1505&start=10}
-  \end{itemize}
-}
-
 \end{document}
-
-\begin{itemize}
-  \item Audrey's first post contained a language semantics question.
-  \item Important insight: Specification and implementation have to be
-  developed hand in hand.
-\end{itemize}
-
-Discuss why Haskell was chosen as implementation language.
-Maybe clarify that this is not a good question, as it was the other way round.
-But stress the features of Haskell which made it the canonical choice.
 
 http://www.slideshare.net/autang/pugs-a-perl-6-implementation
 http://www.slideshare.net/autang/ofun-optimizing-for-fun
@@ -744,20 +853,7 @@ http://pugs.blogs.com/pugs/2005/05/day_109_corouti.html
 <autrijus> iblech++ # demonstrating that the productivity is really not me,
 it's really Haskell :)
 
-2005-07-20
-03:07 stevan  geoffb: I think "moose" is a private joke between nothingmuch and himself :)
-
-2006-03-06
-22:03 stevan_ audreyt: I have to run (dinnertime), but I have to show you Moose.pm soon, it is my (Class::MOP based) answer to Spiffy :)
-
-2006-03-15
-Moose-0.01 released.
-http://perlcast.com/2010/07/12/stevan-little-on-moose/
-
 http://perlmonks.org/?node=perl+oddities
 
 http://strangelyconsistent.org/blog/happy-10th-anniversary-perl-6
 https://www.fsf.org/blogs/community/recognizing-an-inspiring-woman-for-ada-lovelace-day-audrey-tang
-
-https://web.archive.org/web/20051125071047/http://www.oreillynet.com/pub/wlg/7996
-Geoff Broadwell on -Ofun
