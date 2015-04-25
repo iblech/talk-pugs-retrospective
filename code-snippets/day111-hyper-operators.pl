@@ -7,4 +7,4 @@ sub postfix:<!> { [*] 1..$_ }
 
 [+]<< ([1,2], [3,4])  # (3, 7)
 
-[//] @foo             # first undefined value in @foo
+[//] @foo             # first defined value in @foo

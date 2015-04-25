@@ -1,5 +1,6 @@
 class Fido {
     is Dog;
+
     has Str $name;
     has Person $owner is rw;
 

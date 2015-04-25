@@ -48,7 +48,7 @@
 
 \usetheme{Warsaw}
 \usecolortheme{seahorse}
-\definecolor{mypurple}{RGB}{60,0,255}  % Audrey's personal blog color, with full saturation
+\definecolor{mypurple}{RGB}{60,0,255}
 \setbeamercolor{structure}{fg=mypurple}
 \usefonttheme{serif}
 \usepackage{fontspec}
@@ -152,7 +152,7 @@
     the year 2005 and that \emph{the code excerpts are
     edited for legibility}, i.\,e.\@ shortened at a few places and not
     reproduced verbatim. Pull requests are very much welcome; in fact, in good
-    old Pugs-style you will get full write access to the repository so you
+    old Pugs spirit you will get full write access to the repository so you
     can merge them yourself.
     \url{https://github.com/iblech/talk-pugs-retrospective}
     \par
@@ -175,12 +175,12 @@
   anonymous types \textbullet{}
   roles and traits \textbullet{}
   named arguments \textbullet{}
-  expressive routine signatures \textbullet{}
+  expressive subroutine and method signatures \textbullet{}
   a strong meta object system \textbullet{}
   macros \textbullet{}
   state variables \textbullet{}
-  named regexes for easy reuse \textbullet{}
   cleaned up regular expressions \textbullet{}
+  named regexes for easy reuse \textbullet{}
   grammars for parsing \textbullet{}
   lazy lists \textbullet{}
   junctions of values \textbullet{}
@@ -270,7 +270,7 @@ Leaving pugs.\end{verbatim}
     \item TaPL refers to \emph{Types and Programming Languages}, a
     computer-science book on implementing programming languages.
     \item Audrey quickly dropped her initial plan to focus on a
-    side-effect-free subset.
+    side-effect-free subset (on day~3, to be precise).
     \item There was an implementation before Pugs, a tiny
     project sitting in the Parrot source tree.
     \item Audrey's first post contained a language semantics question. This
@@ -331,10 +331,29 @@ Leaving pugs.\end{verbatim}
     \justifying
     \item Firstly, Audrey was an astoundingly productive hacker, rapidly
     implementing major features and attracting a large community of fellow
-    \emph{lambdacamels}.
-    \item Secondly, Haskell's unique features made it the language of choice
-    for implementing Perl~6. It allowed both for quick prototyping and easy
+    \emph{lambdacamels} (totaling more than~200 contributors).
+    \item Secondly, Haskell's unique features rendered it a very fine language
+    for implementing other languages. It allowed both for quick prototyping and easy
     refactoring.
+  \end{itemize}
+  See the \href{http://irclog.perlgeek.de/perl6/2005-03-02}{logs of
+  \#perl6 for 2005-03-02 (\underline{link})} for an interesting chat between Audrey and
+  chromatic, among other things about Pugs's beginnings and Haskell's
+  strengths. Highly recomended reading.
+  \par
+}
+
+\note{
+  \begin{center}
+    \includegraphics[scale=0.45]{images/pugs-svngraph-6.2.10.png}
+  \end{center}
+
+  \begin{itemize}
+    \justifying
+    \item This graph was made at the release of Pugs~6.2.10. The red curve
+    shows the absolute number of commits, the green one shows the number of
+    committers -- multiplied by~10.
+    \item This graph is by far not the nicest graph in the history of graphs.
   \end{itemize}
 }
 
@@ -352,6 +371,34 @@ Leaving pugs.\end{verbatim}
   \medskip
   \inputminted{haskell}{code-snippets/day4-prim.hs}
 \end{frame}
+
+\note{
+  \begin{itemize}
+    \justifying\scriptsize
+    \item To read the Haskell snippets, one needs to know two
+    peculiarities of Haskell's syntax. Firstly, function application is written
+    by juxtaposition, without parentheses -- i.\,e.\@ \texttt{f x y} instead of
+    \texttt{f(x, y)}. Secondly, a dollar sign is like a big opening
+    parenthesis. The corresponding closing parenthesis is implicitly at the end
+    of the line or block -- i.\,e.\@ \texttt{foo \$ a long expression} instead
+    of \texttt{foo (a long expression)}.
+    \item An English reading of the presented parser snippet goes as follows.
+    ``First, try to read one of the characters~\texttt{\$@\%\&}. Then try to
+    read many, at least one, alphanumerical characters (or underscores). If
+    that worked, prepend the sigil to the variable name (using
+    the~\texttt{:}~operator), and pack the result into an abstract syntax
+    tree.''
+    \item We used the magic of \emph{parser combinators} (in the form of the
+    Parsec library) to build the parser. Their central idea is to provide
+    higher-order functions (like \texttt{many1}) to construct complex parsers
+    from simple building blocks (like \texttt{alphaNum} or \texttt{char}).
+    This style allows for parsers which are easy to read, write, and maintain.
+    Also, the parsing rules may dynamically depend on arbitrary runtime
+    values; this flexibility is necessary to support user-defined operators.
+    An important difference to the regular expressions of Perl~5 is that while
+    parsing, one can build a complex syntax tree.
+  \end{itemize}
+}
 
 \begin{frame}[label=turing-completeness]\frametitle{Day 8: ``Pugs 6.0.2; Turing Completeness''}
   % https://github.com/audreyt/pugs/blob/e760c8600350603c10c825caf17ca5ce1e2846ae/src/Eval.hs
@@ -474,6 +521,21 @@ Leaving pugs.\end{verbatim}
   \inputminted{haskell}{code-snippets/day85-parser.hs}
 \end{frame}
 
+\note{
+  \begin{itemize}
+    \justifying
+    \item The parser desugared END blocks to something like \texttt{unshift
+    @*END, \{ ... \}}. The runtime system took care of running the blocks
+    stored in \texttt{@*END} at the end of program execution.
+    \item By calling \texttt{unsafeEvalExp} in the BEGIN branch, the block was
+    executed immediately, at parse time.
+    \item So what's the bug in the END branch?
+    % Spoiler: The unshifting should happen at compile time. Else the END block
+    % might not run at all (consider "if 0 { END {...} }") or several times
+    % (consider "for 1..10 { END {...} }").
+  \end{itemize}
+}
+
 
 \subsubsection{Day 87: ``STM: Atomic power!''}
 
@@ -481,12 +543,24 @@ Leaving pugs.\end{verbatim}
   \inputminted{perl}{code-snippets/day87-atomic.pl}
 \end{frame}
 
+\note{
+  \begin{itemize}
+    \justifying
+    \item Shared Transactional Memory (STM) is an exciting technology for
+    writing composable threadsafe code without having to worry about race
+    conditions.
+    \item It was easy to expose Haskell's STM support to the user, so we did
+    it (as an unspecced extension).
+  \end{itemize}
+}
+
 
 \subsubsection{Day 88: ``A shiny new monad.''}
 
 \begin{frame}[label=shiny-monad]\frametitle{Day 88: ``A shiny new monad.''}
   % http://pugs.blogs.com/pugs/2005/04/day_88_a_shiny_.html
 
+  % #perl6 on 2005-04-29
   \begin{tabbing}
     \hil{$\langle$audreyt$\rangle$} \= \kill
     \hil{$\langle$obra$\rangle$} \> What the hell changed in the last 12 hours with pugs? \\[0.3em]
@@ -542,10 +616,19 @@ Leaving pugs.\end{verbatim}
   \end{columns}
 \end{frame}
 
+\note{
+  \begin{itemize}
+    \justifying
+    \item In plain English: A \texttt{gather} call creates an internal lexical
+    variable \texttt{@?TAKE}. Calling \texttt{take} pushes to this
+    array.
+  \end{itemize}
+}
+
 
 \subsubsection{Day 111: Hyper operators}
 
-\begin{frame}[label=hyper-operators]\frametitle{Day 109: Hyper operators}
+\begin{frame}[label=hyper-operators]\frametitle{Day 111: Hyper operators}
   % http://pugs.blogs.com/pugs/2005/05/day_111_hyper_o.html
 
   \inputminted{perl}{code-snippets/day111-hyper-operators.pl}
@@ -680,11 +763,12 @@ modules!!''}
 \begin{frame}\frametitle{Pugs's unique culture}
   \begin{center}
     \Huge
-    \only<1>{\hcancel{\scalebox{2.5}{-O\hil{2}?}}{0pt}{3pt}{0pt}{-2pt}}
-    \only<2>{\hcancel{\scalebox{2.5}{-O\hil{s}?}}{0pt}{3pt}{0pt}{-2pt}}
+    \only<1>{\hcancel{\scalebox{2.5}{-O\hil{2}}}{0pt}{3pt}{0pt}{-2pt}}
+    \only<2>{\hcancel{\scalebox{2.5}{-O\hil{s}}}{0pt}{3pt}{0pt}{-2pt}}
   \end{center}
 \end{frame}
 
+\definecolor{mypurple}{RGB}{150,0,255}
 {\setbeamercolor{frametitle}{bg=mypurple,fg=white}
 \setbeamertemplate{background canvas}{\includegraphics[width=\paperwidth]{images/mario.jpeg}}
 \begin{frame}\frametitle{Optimizing for fun}
@@ -798,24 +882,24 @@ modules!!''}
 \note{
   \justifying\scriptsize
   \sourcedquote{It came out of the Pugs project, which is a project that in
-  about 2005 started. It was Audrey Tang who was had decided that she wanted to
-  implement Perl 6 in Haskell. So it was sort of a very fun project. Audrey
-  coined the term “O-fun,” optimized for fun.\medskip
+  about 2005 started. It was Audrey Tang who had decided that she wanted to
+  implement Perl~6 in Haskell. So it was sort of a very fun project. Audrey
+  coined the term “O-fun”, optimized for fun.\medskip
 
-  And lot of the goal of the project was to get some juice flowing back into
+  And a lot of the goal of the project was to get some juice flowing back into
   the Perl 6 community and really get a working or a semi-working
   implementation so people could play with it.\medskip
 
   One of the things that I did in that project was to prototype the object
-  system for Perl 6. I read over the Apocalypse 12, read up on a number of
+  system for Perl~6. I read over the Apocalypse~12, read up on a number of
   different object systems in different languages such as Smalltalk, CLOS,
-  which is the Common Lisp Object System. Objective fees, objects run time,
+  which is the Common Lisp Object System. Objective~C's objects runtime,
   Ruby, Python, all those things. We were doing a lot of research at time and
-  we tried to put a lot of that stuff, a lot of the good ideas, into the Perl 6
+  we tried to put a lot of that stuff, a lot of the good ideas, into the Perl~6
   object system.\medskip
 
   And then basically as the Pugs project started to peter out, I found myself
-  going back to my work code, which was your basic vanilla Perl 5.OO. And I
+  going back to my work code, which was your basic vanilla Perl~5 OO. And I
   really craved all the features that I had been prototyping.\medskip
 
   So months here and months there, I fiddled around and I finally came up with
@@ -823,6 +907,7 @@ modules!!''}
   And so a couple months after Class::MOP, we released Moose and sort of got
   running from there.}{Stevan Little}{December
   2010}{http://perlcast.com/2010/07/12/stevan-little-on-moose/}
+  % This excerpt starts at offset 3:50.
 }
 
 \appendix
@@ -872,8 +957,7 @@ PIL2JS
 
 http://pugs.blogs.com/pugs/2005/05/day_109_corouti.html
 <iblech> Yeah, I start to grok Haskell :)
-<autrijus> iblech++ # demonstrating that the productivity is really not me,
-it's really Haskell :)
+<autrijus> iblech++ # demonstrating that the productivity is really not me, it's really Haskell :)
 
 http://perlmonks.org/?node=perl+oddities
 
