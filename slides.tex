@@ -377,11 +377,11 @@ Leaving pugs.\end{verbatim}
     \justifying\scriptsize
     \item To read the Haskell snippets, one needs to know two
     peculiarities of Haskell's syntax. Firstly, function application is written
-    by juxtaposition, without parentheses -- i.\,e.\@ \texttt{f x y} instead of
-    \texttt{f(x, y)}. Secondly, a dollar sign is like a big opening
+    by juxtaposition, without parentheses -- ``\texttt{f x y}'' instead of
+    ``\texttt{f(x, y)}''. Secondly, a dollar sign is like a big opening
     parenthesis. The corresponding closing parenthesis is implicitly at the end
-    of the line or block -- i.\,e.\@ \texttt{foo \$ a long expression} instead
-    of \texttt{foo (a long expression)}.
+    of the line or block -- that is ``\texttt{foo \$ a long expression}'' instead
+    of ``\texttt{foo (a long expression)}''.
     \item An English reading of the presented parser snippet goes as follows.
     ``First, try to read one of the characters~\texttt{\$@\%\&}. Then try to
     read many, at least one, alphanumerical characters (or underscores). If
@@ -405,6 +405,20 @@ Leaving pugs.\end{verbatim}
   User-defined subroutines, variable binding, \ldots\par
   \inputminted{haskell}{code-snippets/day8-eval.hs}
 \end{frame}
+
+\note{
+  \begin{itemize}
+    \justifying
+    \item In line~5, the code to the left of the semicolon operator is executed
+    in the (Perl) context~\texttt{Any} and in the environment~\texttt{env}.
+    \item This results in some changed environment~\texttt{env'} and a
+    value~\texttt{exp} (which is ignored).
+    \item In line~6, the code to the right of the semicolon operator is
+    executed in the context~\texttt{cxt} of the whole expression, resulting in
+    a further updated environment~\texttt{env''} and a value~\texttt{exp} (this
+    shadows the earlier declarations of~\texttt{exp}).
+  \end{itemize}
+}
 
 \begin{frame}[label=refactoring]\frametitle{Day 12: ``Refactoring''}
   eval(), rand(), \ldots\par
@@ -462,19 +476,22 @@ Leaving pugs.\end{verbatim}
     \item[Day 107] User-defined operators, Inline::Pugs
     \hfill\hyperlink{user-defined-ops}{\beamerbutton{see code}}
 
+    \item[Day 108] svnbot (announcing commits to \#perl6)
+    \hfill\hyperlink{svnbot}{\beamerbutton{see code}}
+
     \item[Day 109] gather/take
     \hfill\hyperlink{gather-take}{\beamerbutton{see code}}
 
     \item[Day 111] Hyper operators
     \hfill\hyperlink{hyper-operators}{\beamerbutton{see code}}
-
-    \item[Day 113] ``Pugs runs CPAN modules!''
-    \hfill\hyperlink{pugs-cpan}{\beamerbutton{see code}}
   \end{Mdescription}
 \end{frame}
 
 \begin{frame}[label=further-highlights-cont]\frametitle{Further highlights, cont'd}
   \begin{Mdescription}{Day 000}
+    \item[Day 113] ``Pugs runs CPAN modules!''
+    \hfill\hyperlink{pugs-cpan}{\beamerbutton{see code}}
+
     \item[Day 117] evalbot (using a new safe mode)
 
     \item[Day 128] Academic paper for the Haskell Workshop 2005
@@ -594,6 +611,29 @@ Leaving pugs.\end{verbatim}
 \end{frame}
 
 
+\subsubsection{Day 108: svnbot}
+\begin{frame}[label=svnbot]\frametitle{Day 108: svnbot}
+  % http://colabti.org/irclogger/irclogger_log/perl6?date=2005-05-12
+  % http://colabti.org/irclogger/irclogger_log/perl6?date=2005-05-13
+  \begin{tabbing}
+    \hil{$\langle$osfameron$\rangle$} \= \kill
+    \hil{$\langle$svnbot6$\rangle$} \> r3131 | clkao++ | for svnbot.p6: \\
+    \hil{$\langle$svnbot6$\rangle$} \> r3131 | clkao++ | * Increase karma for \\
+    \hil{$\langle$svnbot6$\rangle$} \> r3131 | clkao++ | \phantom{*} author that commits. \\[0.3em]
+    \hil{\ldots} \\[0.3em]
+    \hil{$\langle$osfameron$\rangle$} \> ooo, you get a ++ every time you commit! \\[0.3em]
+    \hil{$\langle$Juerd$\rangle$} \> No, for every line in the
+    commit message. \\ \> So flood away!
+  \end{tabbing}
+\end{frame}
+
+\begin{frame}\frametitle{Day 108: svnbot}
+  \small
+  The bot used a module Net::IRC, which at the time emulated true OO:
+  \inputminted{perl}{code-snippets/day108-net-irc.pm}
+\end{frame}
+
+
 \subsubsection{Day 109: gather/take}
 
 \begin{frame}[label=gather-take]\frametitle{Day 109: gather/take}
@@ -635,6 +675,7 @@ Leaving pugs.\end{verbatim}
 \end{frame}
 
 
+\logo{\hyperlink{further-highlights-cont}{\beamerbutton{Continue slides \ldots}}}
 \subsubsection{Day 113: ``Pugs runs CPAN modules!!''}
 
 \begin{frame}[label=pugs-cpan]\frametitle{Day 113: ``Pugs runs CPAN
@@ -645,7 +686,6 @@ modules!!''}
 \end{frame}
 
 \subsubsection{Day 164 and others: Perl 6 on JavaScript}
-\logo{\hyperlink{further-highlights-cont}{\beamerbutton{Continue slides \ldots}}}
 \begin{frame}[label=pil2js]\frametitle{Day 164 and others: Perl 6 on JavaScript}
   \begin{center}\includegraphics[scale=0.25]{images/mandel-in-the-browser}\end{center}
 
@@ -748,7 +788,7 @@ modules!!''}
 {\setbeamertemplate{background canvas}{\includegraphics[width=\paperwidth]{images/transparency}}
 \begin{frame}\frametitle{Transparency}
   \begin{itemize}
-    \item Audrey's journal: \\
+    \item Audrey's journal (\href{http://pugs.blogs.com/}{\underline{link}}): \\
     \qquad\quad documenting progress, \\
     \qquad\quad\qquad\quad spreading excitement
     \item Public IRC logs
@@ -874,8 +914,9 @@ modules!!''}
   \end{tabbing}
 
   \justifying
-  stevan is, of course, Stevan Little. Moose originated in Stevan's work 
-  on the Perl 6 metamodel (which governs objects, classes, and metaclasses).
+  stevan is Stevan Little, nothingmuch is Yuval Kogman. Moose originated in
+  Stevan's work on the Perl 6 metamodel (which governs objects, classes, and
+  metaclasses).
   \par
 }
 
