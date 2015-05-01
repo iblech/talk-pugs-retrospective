@@ -8,6 +8,7 @@
 \usepackage{tikz}
 \usepackage{booktabs}
 \usepackage{ragged2e}
+\usepackage[normalem]{ulem}
 
 \makeatletter
 \ifbeamer@draftmode
@@ -154,6 +155,9 @@
     reproduced verbatim. Pull requests are very much welcome; in fact, in good
     old Pugs spirit you will get full write access to the repository so you
     can merge them yourself.
+    \medskip
+
+    \centering
     \url{https://github.com/iblech/talk-pugs-retrospective}
     \par
   }
@@ -207,7 +211,8 @@
     \hil{``Hi. Today I have started working on specifying and implementing
     Featherweight Perl 6 (FP6), a side-effect-free subset of Perl~6.''}
 
-    \raggedleft -- Audrey Tang, February 2nd, 2005
+    \raggedleft -- Audrey Tang, February 2nd, 2005,
+    \href{http://www.nntp.perl.org/group/perl.perl6.language/2005/02/msg19013.html}{\underline{link}}
   }
 
   \begin{Mdescription}{2001}
@@ -394,7 +399,8 @@ Leaving pugs.\end{verbatim}
     from simple building blocks (like \texttt{alphaNum} or \texttt{char}).
     This style allows for parsers which are easy to read, write, and maintain.
     Also, the parsing rules may dynamically depend on arbitrary runtime
-    values; this flexibility is necessary to support user-defined operators.
+    values; this flexibility is necessary to support user-defined operators and
+    BEGIN blocks executing at parse time.
     An important difference to the regular expressions of Perl~5 is that while
     parsing, one can build a complex syntax tree.
   \end{itemize}
@@ -494,8 +500,9 @@ Leaving pugs.\end{verbatim}
 
     \item[Day 117] evalbot (using a new safe mode)
 
-    \item[Day 128] Academic paper for the Haskell Workshop 2005
-    (rejected)
+    \item[Day 128] Academic paper for the Haskell Workshop 2005,
+    \href{https://github.com/iblech/talk-pugs-retrospective/raw/master/hw2005.pdf}{\underline{link}}
+    (rejected, but still recommended reading)
 
     \item[Day 162] ``Say hello to P5ugs!''
 
@@ -506,6 +513,9 @@ Leaving pugs.\end{verbatim}
     \item[Day 193] ``JSAN and CPAN, here we come!''
     \item[Day 219] Perl 6 on JavaScript passes 91\%.
   \end{Mdescription}
+
+  {\scriptsize Timeline only covers 2005 and has several highlights
+  omitted.\par}
 
   \hyperlink{the-end}{\beamerbutton{skip details}}
 \end{frame}
@@ -523,6 +533,16 @@ Leaving pugs.\end{verbatim}
 \begin{frame}[label=perl5re]\frametitle{Day 47: ``Perl 5 regular expressions landed.''}
   \inputminted{text}{code-snippets/day47-regex.pl}
 \end{frame}
+
+\note{
+  \justifying
+  ``Today I asked on \#perl6 which one should I do first: Perl 5 regex (via PCRE),
+  or a Perl 6 to C compiler (via Template Haskell)? pjcj suggested that the
+  former is more practical, so I went with it. I'm glad to report that it now
+  works, with full \texttt{\$/} as arrayref and \texttt{\$0} \texttt{\$1}
+  \texttt{\$2} etc capturing magic.''
+  \par
+}
 
 
 \subsubsection{Day 69: Tied \texttt{\%*ENV}}
@@ -629,7 +649,9 @@ Leaving pugs.\end{verbatim}
 
 \begin{frame}\frametitle{Day 108: svnbot}
   \small
-  The bot used a module Net::IRC, which at the time emulated true OO:
+  The bot used a module Net::IRC
+  (\href{https://github.com/audreyt/pugs/blob/master/ext/Net-IRC/lib/Net/IRC.pm}{\underline{link}}),
+  which at the time emulated true OO:
   \inputminted{perl}{code-snippets/day108-net-irc.pm}
 \end{frame}
 
@@ -696,6 +718,32 @@ modules!!''}
 \note{
   \begin{itemize}
     \justifying
+    \scriptsize
+    \item PIL2JS was written in Perl~5, in a style heavily influenced by
+    Haskell. It used the Haskell part of Pugs to parse (and run BEGIN blocks)
+    of Perl 6 code and translated the resulting PIL code (Pugs Intermediate
+    Language) to JavaScript. Together with a runtime library in JavaScript,
+    this allowed Perl~6 code to be run in the browser.
+    \item Having the advantage of a later start, with more details of Perl~6's
+    container binding semantics understood, it was the first backend to pass
+    those tests. (See
+    \url{https://github.com/perl6/roast/blob/master/S03-binding/arrays.t} for
+    some of the binding features of Perl~6.)
+    \item The first version was hacked together on a weekend and passed
+    most of the basic ``sanity tests'', two days after putter (Mitchell N.
+    Charity) started working on a PIL interpreter in Perl~5.
+    \item Amazingly, a compiled version of the testsuite survived ten years of
+    life: Run the tests yourself at
+    \url{http://speicherleck.de/iblech/stuff/not_perm/pil2js-demo/}. \\ For the
+    bulk of the tests, in the \texttt{t/} subdirectory, you have to add
+    the entry \texttt{31.15.67.4 m19s28.vlinux.de} to your \texttt{/etc/hosts}.
+  \end{itemize}
+}
+
+\note{
+  \begin{itemize}
+    \justifying
+    \scriptsize
     \item JSAN was an attempt to bring a CPAN-like platform to JavaScript. The
     JavaScript backend was able to use JSAN modules.
     \item Foreshadowing node.js:
@@ -766,8 +814,6 @@ modules!!''}
 
 \section{Pugs's unique culture}
 
-% XXX: Academic paper-reading
-
 \subsection{Test-driven development}
 
 \begin{frame}\frametitle{Test-driven development}
@@ -782,6 +828,20 @@ modules!!''}
   \end{center}
 \end{frame}
 
+\note{
+  \begin{itemize}
+    \justifying
+    \scriptsize
+    \item One could upload test results to a public \emph{smoke server}.
+    \item The neat visualization (using Test::TAP::HTMLMatrix, created
+    specifically for Pugs) was interlinked with the design documents.
+  \end{itemize}
+
+  \vspace{-0.5em}
+  \centering
+  \includegraphics[scale=0.24]{images/test-matrix}
+  \par
+}
 
 \subsection{Transparency}
 
@@ -881,6 +941,46 @@ modules!!''}
   \end{itemize}
 }
 
+\note{
+  \begin{itemize}
+    \justifying
+    \item Post on Lambda the Ultimate, a programming languages weblog:
+
+    \sourcedquote{I'm a great fan of theoretical concepts like arrows,
+    but at the same time I'm a self-employed programmer interested in solving
+    my clients' problems.
+    
+    Pugs is notable in that it profitably uses recent developments such as
+    GADTs and Template Haskell for an implementation of Perl6.
+    
+    I recently became a regular on the \#perl6 irc channel and soon after joined
+    the list of committers.
+    
+    In just a few days I've seen a lot. I've seen enthusiastic members of the
+    Perl community learning Haskell. I've seen myself learning Perl. I've also
+    seen how daily Perl programmers work with abstractions like monad
+    transformers. I've seen how some structures are easy to extend for
+    programmers new to both the Pugs codebase and Haskell.}{Shae Errison}{April 5st,
+    2005}{http://lambda-the-ultimate.org/node/620}
+  \end{itemize}
+}
+
+\note{
+  \begin{itemize}
+    \scriptsize
+    \justifying
+    \item Other fun aspects of Pugs's culture: academic paper reading, game
+    development, code obfuscation, Lord of the Rings poetry, other poetry
+    (\href{https://github.com/audreyt/pugs/blob/master/docs/talks/larry_mariner.txt}{\uline{Larry
+    was a mariner}}), videos
+    (\href{https://github.com/iblech/talk-pugs-retrospective/raw/master/oscon05-stevan.mp4}{\uline{Fear
+    and Loathing in Pugsland}}), \ldots
+  \end{itemize}
+
+  \vspace{-1em}
+  \inputminted{haskell}{code-snippets/day1-main.hs}
+}
+
 
 \section{Lasting contributions of Pugs}
 
@@ -934,7 +1034,7 @@ modules!!''}
   One of the things that I did in that project was to prototype the object
   system for Perl~6. I read over the Apocalypse~12, read up on a number of
   different object systems in different languages such as Smalltalk, CLOS,
-  which is the Common Lisp Object System. Objective~C's objects runtime,
+  which is the Common Lisp Object System. Objective~C's object runtime,
   Ruby, Python, all those things. We were doing a lot of research at time and
   we tried to put a lot of that stuff, a lot of the good ideas, into the Perl~6
   object system.\medskip
