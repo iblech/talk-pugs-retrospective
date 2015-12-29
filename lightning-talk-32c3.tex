@@ -1,5 +1,5 @@
 % Compile using: TEXINPUTS=minted/source: xelatex -shell-escape slides.tex
-\documentclass[12pt,compress,english,utf8,t]{beamer}
+\documentclass[14pt,compress,english,utf8,t]{beamer}
 
 \usepackage{etex}
 
@@ -35,18 +35,18 @@
 \newfontfamily\DejaSans{DejaVu Sans}
 
 \title[
-  \raisebox{-0.3mm}{\DejaSans ☺} Perl 6 is out for your programming enjoyment
+  \raisebox{-0.3mm}{\DejaSans ☺} Perl 6 is out for your enjoyment
   \raisebox{-0.3mm}{\DejaSans ☺}
 ]{\raisebox{-0.3mm}{\DejaSans ☺} Perl 6 \raisebox{-0.3mm}{\DejaSans ☺} \\
-  is out for your programming enjoyment
+  is out for your enjoyment
 }
-\author{Ingo Blechschmidt}
-\institute{Chaos Communication Congress}
-\date{December 30th, 2015}
+\author[Ingo Blechschmidt]{\small Ingo Blechschmidt}
+\institute{32th Chaos Communication Congress}
+\date[December 30th, 2015]{\small December 30th, 2015}
 
 \usetheme{Warsaw}
 \usecolortheme{seahorse}
-\definecolor{mypurple}{RGB}{60,0,255}
+\definecolor{mypurple}{RGB}{150,0,255}
 \setbeamercolor{structure}{fg=mypurple}
 \usefonttheme{serif}
 \usepackage{fontspec}
@@ -115,6 +115,65 @@
 
 \begin{document}
 
-\frame{\titlepage}
+\begin{frame}
+  \titlepage
+
+  \vspace*{-1em}
+  \begin{center}
+    \includegraphics[scale=0.40]{images/camelia}
+  \end{center}
+\end{frame}
+
+\begin{frame}[plain,c]
+  \hspace*{-0.4cm}\includegraphics[page=1,scale=0.9]{images/Perl6_LIT_2006.pdf}
+\end{frame}
+
+\begin{frame}[plain,c]
+  \centering
+  \includegraphics[scale=0.6]{images/happy-camel.jpeg}
+  \par
+\end{frame}
+
+\begin{frame}[plain,c]
+  \centering
+  \includegraphics[scale=0.4]{images/applause}
+  \par
+\end{frame}
+
+\begin{frame}\frametitle{Perl 6 \ldots}
+  \begin{itemize}
+    \item is a modern programming language
+    \item is a reimagination of Perl 5
+    \item is expressive
+    \item is multi-paradigmatic
+    \item has dramatically overhauled regexes
+    \item is fully Unicode-aware
+    \item has vast meta-programming abilities
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Example 1}
+  \begin{minted}{perl}
+class SmilingCat is Cat {
+    has Double $.smiling-power = 9000;
+
+    method smile(Person $to, Bool $jump?) {
+        say "Hello $to!";
+        say "I'm jumping!" if $jump;
+        $to.happiness += self.smiling-power;
+                       # or $.smiling-power
+    }
+}
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Example 2}
+  \begin{minted}{perl}
+a
+  \end{minted}
+\end{frame}
+
+% http://www.impactlab.net/wp-content/uploads/2010/09/Happy-Camel-672.jpg
+% http://cdn.theatlantic.com/static/mt/assets/science/bender-applause_medium.gif
 
 \end{document}
