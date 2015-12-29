@@ -5,10 +5,8 @@
 
 \usepackage[english]{babel}
 
-\usepackage{tikz}
-\usepackage{booktabs}
+\usepackage{xspace}
 \usepackage{ragged2e}
-\usepackage[normalem]{ulem}
 
 \makeatletter
 \ifbeamer@draftmode
@@ -19,15 +17,6 @@
 \setminted{linenos}
 \fi
 \makeatother
-
-\usetikzlibrary{calc,shapes.callouts,shapes.arrows}
-\definecolor{darkred}{RGB}{220,0,0}
-\newcommand{\hcancel}[5]{%
-    \tikz[baseline=(tocancel.base)]{
-        \node[inner sep=0pt,outer sep=0pt] (tocancel) {#1};
-        \draw[darkred, line width=1mm] ($(tocancel.south west)+(#2,#3)$) -- ($(tocancel.north east)+(#4,#5)$);
-    }%
-}%
 
 \usepackage[protrusion=true,expansion=false]{microtype}
 
@@ -140,40 +129,93 @@
   \par
 \end{frame}
 
-\begin{frame}\frametitle{Perl 6 \ldots}
-  \begin{itemize}
-    \item is a modern programming language
-    \item is a reimagination of Perl 5
-    \item is expressive
-    \item is multi-paradigmatic
-    \item has dramatically overhauled regexes
-    \item is fully Unicode-aware
-    \item has vast meta-programming abilities
-  \end{itemize}
+\begin{frame}[fragile]\frametitle{Basic control flow and operators}
+  \begin{minted}{perl}
+my $name = prompt("What's your name?");
+say "Hello $name!";
+# or: "Hello $name!".say;
+
+for 0..3 -> $i {
+    say "Day $i of congress was great!";
+}
+
+say "1 * 2 * 3 * 4 * 5 * 6 is:";
+say [*] 1..6;
+
+say (1,2,3) >>+<< (4,5,6);  # (5 7 9)
+  \end{minted}
 \end{frame}
 
-\begin{frame}[fragile]\frametitle{Example 1}
+\begin{frame}[fragile]\frametitle{Object-orientation}
   \begin{minted}{perl}
 class SmilingCat is Cat {
-    has Double $.smiling-power = 9000;
+    has Num $.smiling-power = 9000;
+    has Str $.name where { $^n eq uc $^n };
+    # only uppercase names allowed
 
-    method smile(Person $to, Bool $jump?) {
-        say "Hello $to!";
+    method smile(Person $rcpt, Bool $jump?) {
+        say "Hello $rcpt!";
         say "I'm jumping!" if $jump;
-        $to.happiness += self.smiling-power;
-                       # or $.smiling-power
+        $rcpt.happiness += $.smiling-power;
     }
 }
   \end{minted}
 \end{frame}
 
-\begin{frame}[fragile]\frametitle{Example 2}
+\begin{frame}[fragile]\frametitle{Rules}
   \begin{minted}{perl}
-a
+grammar URL {
+    rule  TOP   {
+        <proto> '://' <host> '/' <path>
+    }
+    token proto { 'https' | 'ftps' }
+    rule  host  { [<domain> '.'?]+ }
+    # ...
+}
+
+if my $ast = URL.parse("https://a.org/b") {
+    # do something with the parse tree $ast
+}
   \end{minted}
+\end{frame}
+
+\renewcommand{\b}{\hil{\textbullet}\xspace}
+
+\begin{frame}\frametitle{\raisebox{-0.3mm}{\DejaSans ☺} Perl 6 is out for your enjoyment \raisebox{-0.3mm}{\DejaSans ☺}}
+  {
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/perl6org}
+    \par
+  }
+
+  \vfill
+  \justifying
+  \small
+  modern \b expressive \b reimagination of Perl 5 \b
+  not source-level compatible to Perl~5 \b
+  full interop with Perl~5 \b
+  gradually typed \b
+  multi-paradigmatic \b dramatically overhauled regexes \b
+  fully Unicode-aware \b vast meta-programming abilities \b
+  implementations decoupled from specification
+  \par
 \end{frame}
 
 % http://www.impactlab.net/wp-content/uploads/2010/09/Happy-Camel-672.jpg
 % http://cdn.theatlantic.com/static/mt/assets/science/bender-applause_medium.gif
 
 \end{document}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYGdefault{n}{class} \PYGdefault{n}{SmilingCat} \PYGdefault{n}{is} \PYGdefault{n}{Cat} \PYGdefault{p}{\PYGdefaultZob{}}
+    \PYGdefault{n}{has} \PYGdefault{n}{Num} \PYGdefault{n+nv}{\PYGdefaultZdl{}}\PYGdefault{n+nv}{.smiling-power} \PYGdefault{o}{=} \PYGdefault{l+m+mi}{9000}\PYGdefault{p}{;}
+    \PYGdefault{n}{has} \PYGdefault{n}{Str} \PYGdefault{n+nv}{\PYGdefaultZdl{}}\PYGdefault{n+nv}{.name} \PYGdefault{n}{where} \PYGdefault{p}{\PYGdefaultZob{}} \PYGdefault{n+nv}{\PYGdefaultZdl{}}{\PYGdefaultZca{}}\PYGdefault{n+nv}{n} \PYGdefault{o+ow}{eq} \PYGdefault{n+nb}{uc} \PYGdefault{n+nv}{\PYGdefaultZdl{}}\PYGdefaultZca{}\PYGdefault{n+nv}{n} \PYGdefault{p}{\PYGdefaultZcb{};}
+    \PYGdefault{c+c1}{\PYGdefaultZsh{} only uppercase names allowed}
+
+    \PYGdefault{n}{method} \PYGdefault{n}{smile}\PYGdefault{p}{(}\PYGdefault{n}{Person} \PYGdefault{n+nv}{\PYGdefaultZdl{}rcpt}\PYGdefault{p}{,} \PYGdefault{n}{Bool} \PYGdefault{n+nv}{\PYGdefaultZdl{}jump}\PYGdefault{p}{?)} \PYGdefault{p}{\PYGdefaultZob{}}
+        \PYGdefault{n}{say} \PYGdefault{l+s}{"Hello \PYGdefaultZdl{}rcpt!"}\PYGdefault{p}{;}
+        \PYGdefault{n}{say} \PYGdefault{l+s}{"I'm jumping!"} \PYGdefault{k}{if} \PYGdefault{n+nv}{\PYGdefaultZdl{}jump}\PYGdefault{p}{;}
+        \PYGdefault{n+nv}{\PYGdefaultZdl{}rcpt}\PYGdefault{o}{.}\PYGdefault{n}{happiness} \PYGdefault{o}{+=} \PYGdefault{n+nv}{\PYGdefaultZdl{}}\PYGdefault{n+nv}{.smiling-power}\PYGdefault{p}{;}
+    \PYGdefault{p}{\PYGdefaultZcb{}}
+\PYGdefault{p}{\PYGdefaultZcb{}}
+\end{Verbatim}
