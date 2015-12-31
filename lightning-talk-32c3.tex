@@ -163,6 +163,7 @@ class SmilingCat is Cat {
 \end{frame}
 
 \begin{frame}[fragile]\frametitle{Rules}
+  \small
   \begin{minted}{perl}
 grammar URL {
     rule  TOP   {
@@ -176,6 +177,9 @@ grammar URL {
 if my $ast = URL.parse("https://a.org/b") {
     # do something with the parse tree $ast
 }
+
+# NB: Rules are used in the compiler itself,
+# to parse Perl 6 source code.
   \end{minted}
 \end{frame}
 
